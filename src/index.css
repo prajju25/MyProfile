@@ -1,0 +1,42 @@
+body {
+    background-color: #3d3a3a !important;
+}
+label {
+    font-weight: bolder;
+}
+h1 {
+    font-size: 45px !important;
+}
+.bg-blue h3 {
+    font-size: 25px !important;
+    background-color: #0c0c5a;
+    margin-left: -12px;
+    margin-right: -12px;
+    text-align: center;
+}
+.bg-blue a {
+    color: #fff;
+}
+.bg-white {
+    background-color: #fff;
+}
+.skill-rating {
+    font-size: 25px !important;
+    margin-top: 15px;
+}
+.skill-rating div {
+    margin-top: 5px;
+}
+.fs25 {
+    font-size: 25px !important;
+}
+.bg-blue {
+    background-color: navy;
+    color: #fff;
+}
+.mb20{
+    margin-bottom: 20px;
+}
+.mt10{
+    margin-top: 10px;
+}
