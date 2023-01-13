@@ -19,7 +19,7 @@ const MyProfile = () => {
     },[])
     return (
         <Grid celled>
-            <Grid.Row>
+            <Grid.Row className='main-page'>
                 <Grid.Column width={5} className="bg-blue">
                     <div className="mb20">
                         <Image src={state?.displayPicture} />
@@ -63,7 +63,7 @@ const MyProfile = () => {
                         })}
                     </div>
                 </Grid.Column>
-                <Grid.Column width={11} className="bg-white">
+                <Grid.Column width={11} className="bg-aliceblue">
                     <div>{state?.description}</div>
                     <div>
                         <h3>Work History</h3>

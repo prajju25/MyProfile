@@ -1,30 +1,25 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu } from 'semantic-ui-react';
+import { useNavigate  } from 'react-router-dom';
+import { Icon, Menu } from 'semantic-ui-react';
 
-const SideMenu = ({menus}: any) => {
-
-    const [state, setState] = useState('');
-
-    const activeMenu = (name: string) => {
-        setState(name);
-    }
+const SideMenu = ({menus}: any) => {    
+    const navigate = useNavigate();
 
     return (
-        <Menu vertical>
-            {menus.map((m: { menuItem: string, to: string },k:number)=>{
+        <>
+            {menus.map((m: { menuItem: string, to: string, name: string },k:number)=>{
                 return (
                     <Menu.Item
+                      as='a'
                       name={m.menuItem}
-                      active={state === m.menuItem}
-                      onClick={()=>activeMenu(m.menuItem)}
+                      onClick={()=>navigate(m.to)}
                       key={m.menuItem+k}
                     >
-                        <Link to={m.to}>{m.menuItem}</Link>
+                        <Icon name={m.name}/>{m.menuItem}
                     </Menu.Item>
                 );
             })}
-        </Menu>
+        </>
     );
 }
 
