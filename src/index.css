@@ -47,7 +47,7 @@ h1 {
 }
 .main-page{
     height: 800px !important;
-    overflow-x: hidden;
+    overflow-x: auto;
     overflow-y: auto;
     text-align:justify;
 }
@@ -68,7 +68,7 @@ h1 {
     font-size: 24px;
     margin: 10px 5px 5px 8px;
     text-align: center;
-    width: 510px;
+    width: 95%;
     height: 300px;
     color: #fff;
     border: 2px solid rgb(59, 57, 57);
@@ -84,11 +84,4 @@ h1 {
 }
 .apps-bi {
     background-image: url("https://st3.depositphotos.com/4021139/14717/i/450/depositphotos_147179817-stock-photo-app-abstract-concept-red-text.jpg");
-}
-.breadcrumbs-row {
-    padding: 10px 0px 0px 0px !important;
-}
-.breadcrumbs{
-    padding: 0px 0px 0px 10px !important;
-    margin: 16px;
 }
