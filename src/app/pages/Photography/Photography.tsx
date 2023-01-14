@@ -2,7 +2,9 @@ import React from "react";
 
 const Photography = () => {
     return (
-        <h3>Photography</h3>
+        <div className='main-page'>
+            coming soon......
+        </div>
     );
 }
 

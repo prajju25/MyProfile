@@ -10,7 +10,7 @@ const Header = ({displaySideMenu, isSidebar}:any) => {
             </a>
             <Menu.Menu position='right'>
                 <div className='item'>
-                    Contact:
+                    Contact me in:
                 </div>
                 <div className='item'>
                     <a href='https://twitter.com/prajju2511'>
