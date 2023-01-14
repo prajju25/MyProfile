@@ -1,9 +1,9 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import Apps from './Apps/Apps';
+import Apps from './pages/Apps/Apps';
 import Home from './Home';
-import Photography from './Photography/Photography';
-import MyProfile from './Profile/MyProfile';
+import Photography from './pages/Photography/Photography';
+import MyProfile from './pages/Profile/MyProfile';
 
 const AppRoutes = () => {
     return (

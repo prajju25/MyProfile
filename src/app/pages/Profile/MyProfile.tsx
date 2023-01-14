@@ -1,25 +1,37 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Image, Rating } from "semantic-ui-react";
-import axios from 'axios';
-import { ProfileObject } from "../Interface/ProfileObject";
+import { Dimmer, Grid, Image, Loader, Message, Rating } from "semantic-ui-react";
+import { HttpGet } from "../../Components/ApiCalls";
+import ApiConstants from "../../Constants/ApiConstant";
+import { ProfileObject } from "../../Interface/ProfileObject";
 
 const MyProfile = () => {
     const [state, setState] = useState<ProfileObject>();
+    const [settings, setSettings] = useState({
+        loader: true,
+        error: false
+    });
     useEffect(()=>{
-        axios.get('./myProfile.json',{
-            headers : { 
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-             }
-          }).then((res)=>{
-            setState(res.data);
+        HttpGet(ApiConstants.PROFILE_API).then((res)=>{
+            setState(res.data[0]);
+            setSettings({...settings, loader: false, error: false });
           }).catch(err=>{
-            console.log(err);
+            setSettings({...settings, loader: false, error: true });
           });
     },[])
     return (
         <Grid celled>
             <Grid.Row className='main-page'>
+                {settings.loader ? (
+                <Dimmer active inverted>
+                <Loader inverted content='Loading' />
+                </Dimmer>
+                ) : 
+                settings.error ? (<Grid.Column>
+                    <Message
+                        error
+                        header='Failed to fetch Profile Data!! Please try after some time.'
+                    />
+                </Grid.Column>) : (<>
                 <Grid.Column width={5} className="bg-blue">
                     <div className="mb20">
                         <Image src={state?.displayPicture} />
@@ -137,6 +149,7 @@ const MyProfile = () => {
                         </ul>
                     </div>
                 </Grid.Column>
+                </>)}
             </Grid.Row>
         </Grid>
     );
