@@ -18,6 +18,7 @@ const MyProfile = () => {
     error: false,
   });
   useEffect(() => {
+    window.scrollTo(0, 0);
     //HttpGet(ApiConstants.PROFILE_API)
     fetchJson(ApiConstants.PROFILE_JSON)
       .then((res: any) => {
