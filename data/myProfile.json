@@ -1,0 +1,182 @@
+{
+  "data": [
+    {
+      "name": "PRAJWAL KOTIAN",
+      "displayPicture": "/DSC_1981.jpeg",
+      "designation": "Senior Lead / Senior Web Developer",
+      "addressLine1": "4-82B, PRANAM, Classic Chaya Building",
+      "addressLine2": "4th Cross Nayampalli, Santhekatte",
+      "city": "Udupi",
+      "state": "Karnataka",
+      "country": "India",
+      "pinCode": "576105",
+      "phoneNumber": "(+91) 8237408816",
+      "email": "prajju.personal@gmail.com",
+      "linkedInURL": "https://www.linkedin.com/in/prajwal-kotian-4ba48980/",
+      "gitHubURL": "https://github.com/prajju25",
+      "skills": [
+        {
+          "name": "ReactJS",
+          "rating": 4
+        },
+        {
+          "name": "JavaScript",
+          "rating": 5
+        },
+        {
+          "name": "TypeScript",
+          "rating": 3
+        },
+        {
+          "name": "NodeJS",
+          "rating": 2
+        },
+        {
+          "name": "Angular",
+          "rating": 4
+        },
+        {
+          "name": "React Native",
+          "rating": 2
+        },
+        {
+          "name": "Java",
+          "rating": 3
+        },
+        {
+          "name": "Spring Boot",
+          "rating": 3
+        },
+        {
+          "name": "Oracle/mySQL",
+          "rating": 3
+        },
+        {
+          "name": "PLSQL",
+          "rating": 2
+        },
+        {
+          "name": "MongoDB",
+          "rating": 2
+        },
+        {
+          "name": "Express.js",
+          "rating": 2
+        },
+        {
+          "name": "Next.js",
+          "rating": 1
+        },
+        {
+          "name": "web3.js",
+          "rating": 1
+        },
+        {
+          "name": "Solidity",
+          "rating": 1
+        },
+        {
+          "name": "Blockchain",
+          "rating": 2
+        },
+        {
+          "name": "AWS",
+          "rating": 1
+        },
+        {
+          "name": "Jenkins/Devops",
+          "rating": 1
+        }
+      ],
+      "description": "Full stack developer having an experience of 9 years in IT industry. Have expertise working in UI libraries and frameworks like React, Redux, Angular (Above 2+, Angular JS) along with it have backend knowledge on Spring Boot and spring. Experience working in different agile process like Scrum Agile, SAFE Agile and also worked in Waterflow model. Expertise in web accessibility of the UI pages with experience in fixing issues related to accessibility (CATO and e508 compliance). Have exposure working in Jenkins, CI-CD pipelines integrated with Jenkins and cloud platforms like AWS for deployment. Looking to leverage my knowledge and experience into a role as Senior UI Lead.",
+      "workHistory": [
+        {
+          "startDate": "April 2021",
+          "endDate": "Present",
+          "role": "Technical Specialist - Senior Lead",
+          "companyName": "BRILLIO",
+          "location": "Bengaluru, INDIA",
+          "description": [
+            "As offshore Lead, conducted offshore DSU calls and guided the team on achieving targeted deliverables for sprint.",
+            "Performed role of UI SMEs in project by Building new react web application from scratch. Created reusable components like Search Table with advanced filters.",
+            "Created new spring boot service and created Rest APIs for displaying data in UI. Working as Full Stack Developer helped the team contributing in both front-end and back-end.",
+            "Handled performance related issues in application and also improved the data source queries.",
+            "Technologies Used: React JS, Redux, Spring Boot, Eureka, Oracle and PLSQL",
+            "Conducted 300+ interviews for Brillio internal and client recruitment."
+          ]
+        },
+        {
+          "startDate": "September 2014",
+          "endDate": "March 2021",
+          "role": "Application Developer Analyst - Application Development Team Lead",
+          "companyName": "Accenture Solutions Private Ltd",
+          "location": "Bengaluru, INDIA",
+          "description": [
+            "Worked as Technical POC and one of UI SME in SLA Reporting project and working with a team of 9-10 people. As a lead was involved in story grooming and providing estimations and assigning story to team members.",
+            "Successfully migrated web application to Angular 8 from AngularJS for multiple application modules. Received appreciation from clients to the team for increasing the performance of the page in production by 30%. Developed major functionality in most releases which are right now live and available to 9000+ customers.",
+            "Involved in requirements and design calls with all AT&T stakeholders including Business and Architects. Came up with overall design and created design documents and interface specification documents. Web Service Integrations for all new products across Map and Maintenance modules.",
+            "Developed single sign on into b2b application for clients who use SLA reports. Migrated spring boot application caching mechanism from Hazel-cast to Redis. Implemented Apache Kafka for publishing recommendations to third party systems.",
+            "Fixed major CATO issues that were reported by the organization. Resolved 508 violations reported on application. Showed responsibility on supporting modules until production release.",
+            "Knowledge transfer of application functional/technical flows to new team members. Mentor junior team members and up-skill newcomers. Gave KT on CATO (Corporate Accessibility Technology Office) which ensures clients products and services are accessible to all their customers.",
+            "Technologies Used: Angular, Spring Boot, Spring MVC, NodeJS, REDIS, Apache Kafka, AngularJS and MongoDB."
+          ]
+        }
+      ],
+      "education": [
+        {
+          "startDate": "August 2010",
+          "endDate": "July 2014",
+          "courseName": "Bachelor of Engineering in Instrumentation Technology",
+          "schoolName": "MS Ramaiah Institute of Technology",
+          "isPercentage": false,
+          "marks": "8.17"
+        },
+        {
+          "startDate": "June 2009",
+          "endDate": "April 2010",
+          "courseName": "12 Grade - PCMCs",
+          "schoolName": "Vidhyodhaya Pre-University College",
+          "isPercentage": true,
+          "marks": "76.5"
+        },
+        {
+          "startDate": "June 2007",
+          "endDate": "April 2008",
+          "courseName": "10 Grade",
+          "schoolName": "St Mary's English Medium School",
+          "isPercentage": true,
+          "marks": "81.76"
+        }
+      ],
+      "accomplishments": [
+        "Received \"Brillian of the Quarter\" on December 2021 for the excellence.",
+        "Received \"Brillio Special Awards\" in January 2022 for the support provided on projects.",
+        "Received award on Tech Star from Accenture in 2018 for my enhancement of skills on UI technologies."
+      ],
+      "certifications": [
+        {
+          "completedDate": "Aug 2018",
+          "certificateName": "SAFe Agilist Certification Certification"
+        },
+        {
+          "completedDate": "Nov 2022",
+          "certificateName": "Ethereum and Solidity"
+        },
+        {
+          "completedDate": "Dec 2023",
+          "certificateName": "Cutshort Certified Javascript - Advanced"
+        },
+        {
+          "completedDate": "Dec 2023",
+          "certificateName": "Cutshort Certified React.js - Advanced"
+        }
+      ],
+      "interests": [
+        "Bike Riding",
+        "Video Editing",
+        "Stock Market/Option Trading",
+        "Cooking"
+      ]
+    }
+  ]
+}

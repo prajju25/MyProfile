@@ -1,87 +1,88 @@
 body {
-    background-color: #3d3a3a !important;
-    width: 100%;
+  background-color: #3d3a3a !important;
+  width: 100%;
 }
 label {
-    font-weight: bolder;
+  font-weight: bolder;
 }
 h1 {
-    font-size: 45px !important;
+  font-size: 45px !important;
 }
 .bg-blue h3 {
-    font-size: 25px !important;
-    background-color: #0c0c5a;
-    margin-left: -12px;
-    margin-right: -12px;
-    text-align: center;
+  font-size: 25px !important;
+  background-color: #0c0c5a;
+  margin-left: -12px;
+  margin-right: -12px;
+  text-align: center;
 }
 .bg-blue a {
-    color: #fff;
+  color: #fff;
 }
 .bg-aliceblue {
-    background-color: aliceblue;
+  background-color: aliceblue;
 }
 .skill-rating {
-    font-size: 25px !important;
-    margin-top: 15px;
+  font-size: 10px !important;
+  margin-top: 15px;
+  letter-spacing: 0.5px;
 }
 .skill-rating div {
-    margin-top: 5px;
+  margin-top: 5px;
 }
 .fs25 {
-    font-size: 25px !important;
+  font-size: 25px !important;
 }
 .bg-blue {
-    background-color: navy;
-    color: #fff;
+  background-color: #484870;
+  color: #fff;
 }
-.mb20{
-    margin-bottom: 20px;
+.mb20 {
+  margin-bottom: 20px;
 }
-.mt10{
-    margin-top: 10px;
+.mt10 {
+  margin-top: 10px;
 }
-.sidemenu{
-    margin-top: 12px;
-    height: 100%;
+.sidemenu {
+  margin-top: 12px;
+  height: 100%;
 }
-.main-page{
-    height: 800px !important;
-    overflow-x: auto;
-    overflow-y: auto;
-    text-align:justify;
+.main-page {
+  height: 800px !important;
+  overflow-x: auto;
+  overflow-y: auto;
+  text-align: justify;
 }
-.container-bg{
-    background-color: rgb(228, 236, 225) !important;
+.container-bg {
+  background-color: rgb(228, 236, 225) !important;
 }
-.card-group{
-    margin: 25px;
-    border: 5px solid #000;
-    border-radius: 5px;
-    padding: 0px 0px 10px 0px !important;
+.card-group {
+  margin: 25px;
+  border: 5px solid #000;
+  border-radius: 5px;
+  padding: 0px 0px 10px 0px !important;
 }
 .card-column {
-    padding: 0px !important;
+  padding: 0px !important;
 }
 .home-cards {
-    font-family: arial;
-    font-size: 24px;
-    margin: 10px 5px 5px 8px;
-    text-align: center;
-    width: 95%;
-    height: 300px;
-    color: #fff;
-    border: 2px solid rgb(59, 57, 57);
-    border-radius: 10px;
-    background-size: cover;
-    box-shadow: 10px 10px rgb(125, 122, 122);
+  font-family: arial;
+  font-size: 24px;
+  margin: 10px 5px 5px 8px;
+  text-align: center;
+  width: 95%;
+  height: 300px;
+  color: #fff;
+  border: 2px solid rgb(59, 57, 57);
+  border-radius: 10px;
+  background-size: cover;
+  box-shadow: 10px 10px rgb(125, 122, 122);
 }
-.profile-bi{
-    background-image: url("https://cdn.slidemodel.com/wp-content/uploads/30050-01-company-profile-powerpoint-template-1.jpg");
+.profile-bi {
+  background-image: url("https://cdn.slidemodel.com/wp-content/uploads/30050-01-company-profile-powerpoint-template-1.jpg");
 }
 .camera-bi {
-    background-image: url("https://static.vecteezy.com/system/resources/previews/000/371/340/original/camera-photography-logo-icon-vector-template-calligraphic-inscription-photography-text-isolated-on-white-background.jpg");
+  background-image: url("https://static.vecteezy.com/system/resources/previews/000/371/340/original/camera-photography-logo-icon-vector-template-calligraphic-inscription-photography-text-isolated-on-white-background.jpg");
 }
 .apps-bi {
-    background-image: url("https://st3.depositphotos.com/4021139/14717/i/450/depositphotos_147179817-stock-photo-app-abstract-concept-red-text.jpg");
+  background-image: url("https://st3.depositphotos.com/4021139/14717/i/450/depositphotos_147179817-stock-photo-app-abstract-concept-red-text.jpg");
 }
