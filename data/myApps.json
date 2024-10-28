@@ -3,12 +3,12 @@
     "name": "Tax Calculator",
     "description": "This app lets you calculate tax for you taxable income on old and new regime. This App is built using Angular framework",
     "url": "https://wolfpack-taxcalc.netlify.app/user",
-    "imageUrl": "https://cdn.pixabay.com/photo/2019/04/02/09/27/income-tax-4097292_1280.jpg"
+    "imageUrl": "/tax-calc.jpg"
   },
   {
     "name": "BooknBeats",
     "description": "Music player which recommends songs based on the theme ofbook your reading. This App is built using React library and chatgpt-3.5",
     "url": "https://booknbeats.netlify.app/",
-    "imageUrl": "https://themillions.com/wp-content/uploads/2012/01/570_ipodbook.jpg"
+    "imageUrl": "/booknbeats.jpg"
   }
 ]

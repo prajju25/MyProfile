@@ -2,17 +2,12 @@ import React, { useState } from "react";
 import { Container, Grid, Menu, Segment, Sidebar } from "semantic-ui-react";
 import Header from "./Header";
 import SideMenu from "./SideMenu";
+import { menus } from "../Constants/Constants";
 
 const Layout = (props: any) => {
   const [state, setState] = useState({
     displaySideMenu: false,
   });
-  const menus = [
-    { menuItem: "Home", to: "/", name: "home" },
-    { menuItem: "MyProfile", to: "/profile", name: "address card outline" },
-    { menuItem: "Photography", to: "/photography", name: "camera" },
-    { menuItem: "Apps", to: "/apps", name: "globe" },
-  ];
 
   const displaySideMenu = (value: boolean) => {
     setState({ displaySideMenu: value });

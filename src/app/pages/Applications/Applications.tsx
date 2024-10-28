@@ -25,39 +25,49 @@ const Apps = () => {
       });
   }, []);
 
+  const caraouselDisplay = () => (
+    <>
+      <div className="app-name">Applications</div>
+      <Carousel className="full-screen-carousel">
+        {appData?.map((app) => (
+          <Carousel.Item
+            key={app.name}
+            onClick={() => {
+              window.open(app.url, "_blank1;");
+            }}
+          >
+            <div
+              className="image-overlay-container"
+              style={{ backgroundImage: `url(${app.imageUrl})` }}
+            />
+            <Carousel.Caption className="carousel-section">
+              <h1>{app.name}</h1>
+              <p className="carousel-desc">{app.description}</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+        ))}
+      </Carousel>
+    </>
+  );
+
+  const appDisplay = () =>
+    settings.error ? (
+      <Message
+        error
+        header="Failed to fetch Applications Data!! Please try after some time."
+      />
+    ) : (
+      caraouselDisplay()
+    );
+
   return (
-    <div className="main-page">
+    <div className="main-page app-col">
       {settings.loader ? (
         <Dimmer active inverted>
           <Loader inverted content="Loading" />
         </Dimmer>
-      ) : settings.error ? (
-        <Message
-          error
-          header="Failed to fetch Applications Data!! Please try after some time."
-        />
       ) : (
-        <Carousel>
-          {appData?.map((app) => (
-            <Carousel.Item
-              key={app.name}
-              onClick={() => {
-                window.open(app.url, "_blank1;");
-              }}
-            >
-              <img
-                className="d-block w-100"
-                style={{ width: "100px", height: "600px" }}
-                src={app.imageUrl}
-                alt={app.name}
-              />
-              <Carousel.Caption className="carousel-section">
-                <h1>{app.name}</h1>
-                <p className="carousel-desc">{app.description}</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-          ))}
-        </Carousel>
+        appDisplay()
       )}
     </div>
   );
