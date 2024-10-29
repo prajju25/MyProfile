@@ -62,11 +62,11 @@ const Photography = () => {
   const fetchAccessToken = async (idToken: any) => {
     try {
       const response = await fetch(GOOGLE_VERIFY_TOKEN, {
-        method: "POST",
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${idToken}`,
         },
-        body: JSON.stringify({ idToken }),
       });
       const data = await response.json();
       return data.sub;
