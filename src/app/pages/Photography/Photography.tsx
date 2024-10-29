@@ -14,7 +14,6 @@ const Photography = () => {
   const [accessToken, setAccessToken] = useState("");
 
   useEffect(() => {
-    console.log(CLIENT_ID, GOOGLE_VERIFY_TOKEN);
     // Load the Google Identity Services client
     const loadGisClient = () => {
       const script = document.createElement("script");
@@ -70,7 +69,7 @@ const Photography = () => {
         body: JSON.stringify({ idToken }),
       });
       const data = await response.json();
-      return data.accessToken;
+      return data.sub;
     } catch (error) {
       console.error("Error fetching access token:", error);
       return null;
