@@ -1,6 +1,3 @@
-class ApiConstants {
-  static PROFILE_API = "/api/v1/getProfile";
-  static PROFILE_JSON = "./myProfile.json";
-  static APPS_DATA_JSON = "./myApps.json";
-}
-export default ApiConstants;
+export const PROFILE_API: string = "/api/v1/getProfile";
+export const PROFILE_JSON: string = "./myProfile.json";
+export const APPS_DATA_JSON: string = "./myApps.json";

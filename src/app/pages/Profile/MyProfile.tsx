@@ -8,7 +8,7 @@ import {
   Rating,
 } from "semantic-ui-react";
 import { fetchJson } from "../../Components/ApiCalls";
-import ApiConstants from "../../Constants/ApiConstant";
+import * as ApiConstants from "../../Constants/ApiConstant";
 import { ProfileObject } from "../../Interface/ProfileObject";
 
 const MyProfile = () => {

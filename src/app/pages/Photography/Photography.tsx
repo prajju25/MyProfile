@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import "regenerator-runtime/runtime";
 
-const CLIENT_ID =
-  "448186148367-ovd77ph3v122rmhkedoin0p0acfm2jbt.apps.googleusercontent.com"; //process.env.REACT_APP_GPHOTOS_CLIENT_ID;
-const API_KEY = process.env.REACT_APP_GPHOTOS_API_KEY;
+const CLIENT_ID = process.env.GPHOTOS_CLIENT_ID;
+const API_KEY = process.env.GPHOTOS_API_KEY;
 const SCOPES = "https://www.googleapis.com/auth/photoslibrary.readonly";
+const GOOGLE_VERIFY_TOKEN: string | any = process.env.GOOGLE_VERIFY_TOKEN;
 
 const Photography = () => {
   const [photos, setPhotos] = useState([]);
@@ -13,6 +13,7 @@ const Photography = () => {
   const [accessToken, setAccessToken] = useState("");
 
   useEffect(() => {
+    console.log(CLIENT_ID, GOOGLE_VERIFY_TOKEN);
     // Load the Google Identity Services client
     const loadGisClient = () => {
       const script = document.createElement("script");
@@ -60,7 +61,7 @@ const Photography = () => {
   // Mock function for exchanging ID token for access token
   const fetchAccessToken = async (idToken: any) => {
     try {
-      const response = await fetch("http://localhost:3000/api/exchange-token", {
+      const response = await fetch(GOOGLE_VERIFY_TOKEN, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

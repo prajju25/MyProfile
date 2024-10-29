@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchJson } from "../../Components/ApiCalls";
-import ApiConstants from "../../Constants/ApiConstant";
+import * as ApiConstants from "../../Constants/ApiConstant";
 import { Dimmer, Loader, Message } from "semantic-ui-react";
 import { AppsObject } from "../../Interface/AppsObject";
 import Carousel from "react-bootstrap/esm/Carousel";
