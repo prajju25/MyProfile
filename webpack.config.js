@@ -1,20 +1,21 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserWebpackPlugin = require("terser-webpack-plugin");
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
- 
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const webpack = require("webpack");
+require("dotenv").config();
+
 const isProd = process.env.NODE_ENV === "production";
- 
+
 const config = {
   mode: isProd ? "production" : "development",
   entry: path.join(__dirname, "src", "index.tsx"),
   output: {
-    path:path.resolve(__dirname, "dist"),
-    filename: "bundle.js"
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js",
   },
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx",".css"],
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".css"],
   },
   module: {
     rules: [
@@ -33,20 +34,28 @@ const config = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "src", "index.html"),
       filename: "index.html",
-      inject: "body"
+      inject: "body",
     }),
     new CopyWebpackPlugin({
       patterns: [
-        {from: "data", to: "./"},
-        {from: "src/*.css", to: ""}
-      ]
+        { from: "data", to: "./" },
+        { from: "src/*.css", to: "" },
+      ],
     }),
-    new Dotenv({
-      path: './.env'
-    })
-  ]
-}
- 
+    new webpack.DefinePlugin({
+      "process.env.REACT_APP_GPHOTOS_CLIENT_ID": JSON.stringify(
+        process.env.REACT_APP_GPHOTOS_CLIENT_ID
+      ),
+      "process.env.REACT_APP_GPHOTOS_CLIENT_SECRET": JSON.stringify(
+        process.env.REACT_APP_GPHOTOS_CLIENT_SECRET
+      ),
+      "process.env.REACT_APP_GOOGLE_VERIFY_TOKEN": JSON.stringify(
+        process.env.REACT_APP_GOOGLE_VERIFY_TOKEN
+      ),
+    }),
+  ],
+};
+
 if (isProd) {
   config.optimization = {
     minimizer: [new TerserWebpackPlugin()],
@@ -56,8 +65,8 @@ if (isProd) {
     port: 9000,
     open: true,
     hot: true,
-    compress: true
+    compress: true,
   };
 }
- 
+
 module.exports = config;
