@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import "regenerator-runtime/runtime";
 
-const CLIENT_ID = process.env.GPHOTOS_CLIENT_ID;
-const API_KEY = process.env.GPHOTOS_API_KEY;
+const CLIENT_ID = process.env.REACT_APP_GPHOTOS_CLIENT_ID;
+const API_KEY = process.env.REACT_APP_GPHOTOS_CLIENT_SECRET;
 const SCOPES = "https://www.googleapis.com/auth/photoslibrary.readonly";
-const GOOGLE_VERIFY_TOKEN: string | any = process.env.GOOGLE_VERIFY_TOKEN;
+const GOOGLE_VERIFY_TOKEN: string | any =
+  process.env.REACT_APP_GOOGLE_VERIFY_TOKEN;
 
 const Photography = () => {
   const [photos, setPhotos] = useState([]);
