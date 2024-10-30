@@ -1,6 +1,5 @@
 const { OAuth2Client } = require("google-auth-library");
 // const client = new OAuth2Client(process.env.REACT_APP_GPHOTOS_CLIENT_ID);
-const axios = require("axios");
 
 exports.handler = async (event, context) => {
   const { idToken } = JSON.parse(event.body);
@@ -14,18 +13,26 @@ exports.handler = async (event, context) => {
     };
   }
   try {
-    const response = await axios.post("https://oauth2.googleapis.com/token", {
-      client_id: process.env.REACT_APP_GPHOTOS_CLIENT_ID,
-      client_secret: process.env.REACT_APP_GPHOTOS_CLIENT_SECRET,
-      grant_type: "authorization_code",
-      code: idToken,
-      redirect_uri: process.env.REACT_APP_GOOGLE_VERIFY_TOKEN,
+    const response = await fetch("https://oauth2.googleapis.com/token", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        client_id: process.env.REACT_APP_GPHOTOS_CLIENT_ID,
+        client_secret: process.env.REACT_APP_GPHOTOS_CLIENT_SECRET,
+        code: idToken,
+        grant_type: "authorization_code",
+        redirect_uri: process.env.REACT_APP_GOOGLE_VERIFY_TOKEN,
+      }),
     });
+
+    const data = await response.json();
     console.log("Verify Token Success!!!");
 
     return {
       statusCode: 200,
-      body: { accessToken: response.data.access_token },
+      body: data,
     };
   } catch (error) {
     console.error("Error exchanging token:", error);
