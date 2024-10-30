@@ -65,11 +65,11 @@ const Photography = () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${idToken}`,
         },
+        body: JSON.stringify({ idToken }),
       });
       const data = await response.json();
-      return data.sub;
+      return data.accessToken;
     } catch (error) {
       console.error("Error fetching access token:", error);
       return null;
