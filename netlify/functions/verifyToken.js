@@ -4,10 +4,7 @@ const axios = require("axios");
 
 exports.handler = async (event, context) => {
   const { idToken } = event.body;
-  console.log(
-    "Verify Token: Client ID:",
-    process.env.REACT_APP_GPHOTOS_CLIENT_ID
-  );
+  console.log("Verify Token Request:", event);
 
   if (!idToken) {
     console.log("Verify Token: Error:Access token is required");
