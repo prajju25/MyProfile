@@ -31,7 +31,7 @@ exports.handler = async (event, context) => {
     console.error("Error exchanging token:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Failed to exchange token" }),
+      body: JSON.stringify({ error }),
     };
   }
 };
