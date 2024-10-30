@@ -101,7 +101,7 @@ const MyProfile = () => {
             })}
           </div>
         </Grid.Column>
-        <Grid.Column width={11} className="bg-aliceblue">
+        <Grid.Column width={11} className="resume-font bg-aliceblue">
           <div className="mb20">{state?.description}</div>
           <div className="mb20">
             <h3>Work History</h3>

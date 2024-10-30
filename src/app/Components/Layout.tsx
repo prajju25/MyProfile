@@ -32,7 +32,7 @@ const Layout = (props: any) => {
                 visible={state.displaySideMenu}
                 width="thin"
               >
-                <SideMenu menus={menus} />
+                <SideMenu menus={menus} toogleSideBar={displaySideMenu} />
               </Sidebar>
               <Sidebar.Pusher
                 dimmed={state.displaySideMenu}

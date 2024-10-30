@@ -1,45 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Button, Dimmer, Grid, Icon, Image, Loader } from "semantic-ui-react";
+import { Button, Grid, Icon, Image } from "semantic-ui-react";
 
 const Home = () => {
-  const [loader, setLoader] = useState(true);
   useEffect(() => {
     window.scrollTo(0, 0);
-    setLoader(false);
   }, []);
 
-  if (loader) {
-    return (
-      <Dimmer active inverted>
-        <Loader inverted content="Loading" />
-      </Dimmer>
-    );
-  } else {
-    return (
-      <Grid>
-        <Grid.Row>
-          <div className="about-me">
-            <p>
-              <strong>A BIT ABOUT ME</strong>
-            </p>
-            <h1 className="about-header">Who Am I?</h1>
-            <p>
-              Hi I'm Prajwal Kotian a Senior Frontend/Fullstack Lead and
-              Technical Specialist in frontend technologies. I am an
-              enthusiastic, self-motivated and hard working person. I have an
-              expereince leading the team and very flexible to work in different
-              technologies. I work well under pressure and adaptable to all
-              challenging situation.
-            </p>
-            <p>
-              This website provides you my journey and my professional
-              expereince details
-            </p>
-          </div>
-        </Grid.Row>
-        <Grid.Row columns={2} className="card-group">
-          <Grid.Column className="card-column" width={6}>
+  return (
+    <Grid className="home-page">
+      <Grid.Row className="home-section">
+        <div className="about-me">
+          <p>
+            <strong className="sub-header">A BIT ABOUT ME</strong>
+          </p>
+          <h1 className="about-header">Who Am I?</h1>
+          <p>
+            Hello! I'm Prajwal Kotian - Senior Frontend/Fullstack Lead by
+            profession, digital explorer by choice. When I'm not orchestrating
+            the perfect blend of JavaScript and caffeine, I'm busy transforming
+            complex tech into user-friendly magic. I've led teams across
+            code-filled battlefields and tackled challenges in every corner of
+            the tech stack.
+          </p>
+          <p>
+            Here, you'll find the highlights of my journey: career milestones,
+            lessons learned, and maybe a few coding bloopers (hey, nobody's
+            perfect!). Dive in and see where the pixels and persistence have
+            taken me so far!
+          </p>
+        </div>
+      </Grid.Row>
+      <Grid.Row columns={2} className="home-section card-group">
+        <Grid.Column className="card-column" width={6}>
+          <Link to="/profile">
             <div className="profile">
               <Image
                 src="/DSC_1981.jpeg"
@@ -48,38 +42,37 @@ const Home = () => {
                 className="profile-image"
               />
               <h2 className="profile-title">
-                I am happy to show you about my professional journey
+                I am happy to show you about my <br />
+                professional journey
               </h2>
-              <Link to="/profile">
-                <Button className="profile-button">Read More</Button>
-              </Link>
+              <Button className="profile-button">Read More</Button>
             </div>
-          </Grid.Column>
-          <Grid.Column className="card-column" width={10}>
-            <Grid>
-              <Grid.Row className="card-box-group">
-                <Grid.Column className="card-box" width={7}>
-                  <Link to="/apps" className="link">
-                    <div className="pt20">
-                      <Icon name="computer" size="massive" color="orange" />
-                      <h2>Web Applications</h2>
-                    </div>
-                  </Link>
-                </Grid.Column>
-                <Grid.Column className="card-box" width={7}>
-                  <Link to="/photography" className="link">
-                    <div className="pt20">
-                      <Icon name="photo" size="massive" color="purple" />
-                      <h2>Photography</h2>
-                    </div>
-                  </Link>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    );
-  }
+          </Link>
+        </Grid.Column>
+        <Grid.Column className="card-column" width={10}>
+          <Grid>
+            <Grid.Row className="card-box-group">
+              <Grid.Column className="card-box" width={7}>
+                <Link to="/apps" className="link">
+                  <div className="pt20">
+                    <Icon name="computer" size="massive" color="orange" />
+                    <h2>Web Applications</h2>
+                  </div>
+                </Link>
+              </Grid.Column>
+              <Grid.Column className="card-box" width={7}>
+                <Link to="/photography" className="link">
+                  <div className="pt20">
+                    <Icon name="photo" size="massive" color="purple" />
+                    <h2>Photography</h2>
+                  </div>
+                </Link>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+  );
 };
 export default Home;
