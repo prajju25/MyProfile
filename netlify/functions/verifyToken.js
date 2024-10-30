@@ -32,7 +32,7 @@ exports.handler = async (event, context) => {
 
     return {
       statusCode: 200,
-      body: { response: data },
+      body: JSON.stringify(data),
     };
   } catch (error) {
     console.error("Error exchanging token:", error);
