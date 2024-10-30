@@ -5,7 +5,7 @@ body {
 .container {
   padding: 0px !important;
 }
-label {
+.label-text {
   font-weight: bolder;
 }
 h1 {
@@ -67,88 +67,86 @@ h1 {
   overflow-y: auto;
   text-align: justify;
 }
-.home-page {
+#home-page {
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
   height: 100vh;
-}
-.home-section {
-  height: 100vh;
-  scroll-snap-align: start;
+  .home-section {
+    height: 100vh;
+    scroll-snap-align: start;
+  }
+  .about-me {
+    font-family: cursive;
+    margin: 3% auto;
+    width: 60% !important;
+    text-align: center;
+    p {
+      font-size: 3vh;
+    }
+  }
+  .about-header {
+    color: #0c0c5a;
+    font-weight: bold;
+    font-size: 15vh !important;
+  }
+  .card-group {
+    margin: 25px;
+    /* border: 5px solid #000;
+    border-radius: 5px; */
+    padding: 0px 0px 10px 0px !important;
+    min-height: 75%;
+  }
+  .card-column {
+    padding: 0px !important;
+  }
+  .profile {
+    box-shadow: 0 8px 16px 0 rgb(119, 132, 165),
+      0 12px 40px 0 rgba(44, 71, 149, 0.19);
+    border-radius: 0.5rem;
+    background-color: #1d1d8e;
+    text-align: center;
+    margin: 20px;
+    color: #fff;
+  }
+  .profile:hover {
+    box-shadow: 0 12px 40px 0 rgba(44, 71, 149, 0.19),
+      12px 24px 80px 0 rgba(6, 6, 221, 0.19);
+  }
+  .profile .profile-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-top: 20px;
+  }
+  .profile .profile-title {
+    font-family: cursive;
+  }
+  .profile .profile-button {
+    background-color: #1d1d8e !important;
+    border: solid #fff !important;
+    margin-bottom: 20px !important;
+    color: #fff !important;
+  }
+  .card-box-group {
+    margin-top: 20px !important;
+    height: 240px;
+  }
+  .card-box {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 0.5rem;
+    text-align: center;
+    margin: 20px;
+    height: 100%;
+    padding: 0px !important;
+  }
+  .card-box:hover {
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.2),
+      6px 12px 40px 0 rgba(0, 0, 0, 0.19);
+  }
 }
 .container-bg {
   background-color: #d7d7d7 !important;
-}
-.sub-header {
-  font-size: 4rem;
-}
-.about-me {
-  margin: 5% auto;
-  width: 50% !important;
-  text-align: center;
-  p {
-    font-size: 2rem;
-  }
-}
-.about-header {
-  color: #0c0c5a;
-  font-weight: bold;
-  font-size: 10rem !important;
-}
-.card-group {
-  margin: 25px;
-  /* border: 5px solid #000;
-  border-radius: 5px; */
-  padding: 0px 0px 10px 0px !important;
-  min-height: 75%;
-}
-.card-column {
-  padding: 0px !important;
-}
-.profile {
-  box-shadow: 0 8px 16px 0 rgb(119, 132, 165),
-    0 12px 40px 0 rgba(44, 71, 149, 0.19);
-  border-radius: 0.5rem;
-  background-color: #1d1d8e;
-  text-align: center;
-  margin: 20px;
-  color: #fff;
-}
-.profile:hover {
-  box-shadow: 0 12px 40px 0 rgba(44, 71, 149, 0.19),
-    12px 24px 80px 0 rgba(6, 6, 221, 0.19);
-}
-.profile .profile-image {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  margin-top: 20px;
-}
-.profile .profile-title {
-  font-family: cursive;
-}
-.profile .profile-button {
-  background-color: #1d1d8e !important;
-  border: solid #fff !important;
-  margin-bottom: 20px !important;
-  color: #fff !important;
-}
-.card-box-group {
-  margin-top: 20px !important;
-  height: 240px;
-}
-.card-box {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 0.5rem;
-  text-align: center;
-  margin: 20px;
-  height: 100%;
-  padding: 0px !important;
-}
-.card-box:hover {
-  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.2),
-    6px 12px 40px 0 rgba(0, 0, 0, 0.19);
 }
 .link {
   display: block;

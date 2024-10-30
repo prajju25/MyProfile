@@ -8,11 +8,11 @@ const Home = () => {
   }, []);
 
   return (
-    <Grid className="home-page">
+    <Grid id="home-page">
       <Grid.Row className="home-section">
         <div className="about-me">
           <p>
-            <strong className="sub-header">A BIT ABOUT ME</strong>
+            <strong>A BIT ABOUT ME</strong>
           </p>
           <h1 className="about-header">Who Am I?</h1>
           <p>

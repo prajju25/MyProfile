@@ -11,7 +11,6 @@ const GOOGLE_VERIFY_TOKEN: string | any =
 const Photography = () => {
   const [photos, setPhotos] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [accessToken, setAccessToken] = useState("");
 
   useEffect(() => {
     // Load the Google Identity Services client
@@ -43,11 +42,11 @@ const Photography = () => {
       try {
         const decoded = jwtDecode(response.credential);
         const idToken = response.credential;
+        console.log(decoded);
 
         // Exchange ID token for access token on the server (if necessary)
         const fetchedAccessToken = await fetchAccessToken(idToken);
         if (fetchedAccessToken) {
-          setAccessToken(fetchedAccessToken);
           fetchPhotos(fetchedAccessToken);
         }
       } catch (error) {

@@ -53,7 +53,7 @@ const MyProfile = () => {
               <strong>Contact</strong>
             </h3>
             <div>
-              <label>Address</label>
+              <div className="label-text">Address</div>
               <div>{state?.addressLine1}</div>
               <div>{state?.addressLine2}</div>
               <div>
@@ -62,21 +62,21 @@ const MyProfile = () => {
               </div>
             </div>
             <div className="mt10">
-              <label>Phone</label>
+              <div className="label-text">Phone</div>
               <div>{state?.phoneNumber}</div>
             </div>
             <div className="mt10">
-              <label>E-mail</label>
+              <div className="label-text">E-mail</div>
               <div>{state?.email}</div>
             </div>
             <div className="mt10">
-              <label>LinkedIn</label>
+              <div className="label-text">LinkedIn</div>
               <div>
                 <a href={state?.linkedInURL}>{state?.linkedInURL}</a>
               </div>
             </div>
             <div className="mt10">
-              <label>GitHub</label>
+              <div className="label-text">GitHub</div>
               <div>
                 <a href={state?.gitHubURL}>{state?.gitHubURL}</a>
               </div>
@@ -105,9 +105,9 @@ const MyProfile = () => {
           <div className="mb20">{state?.description}</div>
           <div className="mb20">
             <h3>Work History</h3>
-            {state?.workHistory.map((work, wi) => {
+            {state?.workHistory.map((work) => {
               return (
-                <Grid key={wi}>
+                <Grid key={work.companyName}>
                   <Grid.Column width={3}>
                     {work.startDate} / {work.endDate}
                   </Grid.Column>
@@ -117,8 +117,8 @@ const MyProfile = () => {
                       {work.companyName}, {work.location}
                     </div>
                     <ul>
-                      {work.description.map((line, li) => {
-                        return <li key={li}>{line}</li>;
+                      {work.description.map((line) => {
+                        return <li key={line}>{line}</li>;
                       })}
                     </ul>
                   </Grid.Column>
@@ -128,9 +128,9 @@ const MyProfile = () => {
           </div>
           <div className="mb20">
             <h3>Education</h3>
-            {state?.education.map((e, ei) => {
+            {state?.education.map((e) => {
               return (
-                <Grid key={ei}>
+                <Grid key={e.schoolName}>
                   <Grid.Column width={3}>
                     {e.startDate} / {e.endDate}
                   </Grid.Column>
@@ -149,16 +149,16 @@ const MyProfile = () => {
           <div className="mb20">
             <h3>Accomplishments</h3>
             <ul>
-              {state?.accomplishments.map((a, ai) => {
-                return <li key={ai}>{a}</li>;
+              {state?.accomplishments.map((a) => {
+                return <li key={a}>{a}</li>;
               })}
             </ul>
           </div>
           <div className="mb20">
             <h3>Certifications</h3>
-            {state?.certifications.map((c, ci) => {
+            {state?.certifications.map((c) => {
               return (
-                <Grid key={ci}>
+                <Grid key={c.certificateName}>
                   <Grid.Column width={3}>{c.completedDate}</Grid.Column>
                   <Grid.Column width={13}>{c.certificateName}</Grid.Column>
                 </Grid>
@@ -168,8 +168,8 @@ const MyProfile = () => {
           <div>
             <h3>Interests</h3>
             <ul>
-              {state?.interests.map((i, ii) => {
-                return <li key={ii}>{i}</li>;
+              {state?.interests.map((i) => {
+                return <li key={i}>{i}</li>;
               })}
             </ul>
           </div>
