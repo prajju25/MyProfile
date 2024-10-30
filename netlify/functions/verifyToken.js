@@ -3,8 +3,8 @@ const { OAuth2Client } = require("google-auth-library");
 const axios = require("axios");
 
 exports.handler = async (event, context) => {
-  const { idToken } = event.body;
-  console.log("Verify Token Request:", event);
+  const { idToken } = JSON.parse(event.body);
+  console.log("Verify Token Request:", idToken);
 
   if (!idToken) {
     console.log("Verify Token: Error:Access token is required");
