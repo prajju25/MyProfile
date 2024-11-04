@@ -7,7 +7,7 @@ const Header = ({ displaySideMenu, isSidebar }: any) => {
       <a className="item" onClick={() => displaySideMenu(!isSidebar)}>
         <Icon disabled name="th" />
       </a>
-      <Menu.Menu position="right">
+      <Menu.Menu position="right" className="menu-section">
         <div className="item">Contact me in:</div>
         <div className="item">
           <a href="https://twitter.com/prajju2511">

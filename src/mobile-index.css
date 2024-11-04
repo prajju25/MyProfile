@@ -66,8 +66,11 @@
     .card-group {
       margin: 10px;
     }
+    .profile {
+      font-size: 2vw;
+    }
     .card-box {
-      font-size: 2.5vw;
+      font-size: 2vw;
     }
   }
 
@@ -98,5 +101,8 @@
 
   .overlay-text p {
     font-size: 1rem;
+  }
+  .menu-section {
+    overflow-x: auto;
   }
 }
