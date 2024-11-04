@@ -1,0 +1,102 @@
+/* Default styles */
+
+/* Media Query for mobile screens */
+@media (max-width: 768px) {
+  body {
+    background-color: #3d3a3a !important;
+    width: 100%;
+  }
+
+  .container {
+    padding: 10px !important;
+  }
+
+  .label-text {
+    font-weight: bold;
+    font-size: 0.9em; /* Smaller font for labels */
+  }
+
+  h1 {
+    font-size: 30px !important; /* Adjust for smaller screens */
+  }
+
+  .bg-blue h3 {
+    font-size: 20px !important;
+    margin-left: -8px;
+    margin-right: -8px;
+    padding: 10px;
+  }
+
+  .skill-rating {
+    font-size: 8px !important;
+    margin-top: 10px;
+    letter-spacing: 0.3px;
+  }
+
+  .app-col {
+    padding: 0 5%;
+  }
+
+  .app-name {
+    font-size: 2rem; /* Adjust large font size */
+    margin: 20px;
+  }
+
+  .main-page {
+    height: auto !important;
+    overflow-x: hidden;
+  }
+
+  #home-page {
+    height: auto;
+    .home-section {
+      height: 100%;
+      scroll-snap-align: start;
+    }
+    .about-me {
+      margin: 2% auto;
+      width: 90% !important;
+      p {
+        font-size: 2vh;
+      }
+    }
+    .about-header {
+      font-size: 8vh !important;
+    }
+    .card-group {
+      margin: 10px;
+    }
+    .card-box {
+      font-size: 2.5vw;
+    }
+  }
+
+  .profile .profile-image {
+    width: 90%; /* Reduce profile image size */
+  }
+
+  .profile .profile-button {
+    margin-bottom: 10px !important;
+  }
+
+  .carousel-section {
+    padding: 10% 0 !important;
+  }
+
+  .carousel-desc {
+    font-size: 16px;
+  }
+
+  .resume-font {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .overlay-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .overlay-text p {
+    font-size: 1rem;
+  }
+}

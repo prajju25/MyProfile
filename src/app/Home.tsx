@@ -7,6 +7,63 @@ const Home = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const profileCardComp = () => (
+    <Grid.Column
+      className="card-column"
+      width={window.innerWidth <= 768 ? 16 : 6}
+    >
+      <Link to="/profile">
+        <div className="profile">
+          <Image
+            src="/DSC_1981.jpeg"
+            avatar
+            size="medium"
+            className="profile-image"
+          />
+          <h2 className="profile-title">
+            I am happy to show you about my <br />
+            professional journey
+          </h2>
+          <Button className="profile-button">Read More</Button>
+        </div>
+      </Link>
+    </Grid.Column>
+  );
+
+  const otherCardComp = () => (
+    <Grid.Column
+      className="card-column"
+      width={window.innerWidth <= 768 ? 16 : 10}
+    >
+      <Grid>
+        <Grid.Row className="card-box-group">
+          <Grid.Column
+            className="card-box"
+            width={window.innerWidth <= 768 ? 6 : 7}
+          >
+            <Link to="/apps" className="link">
+              <div className="pt20">
+                <Icon name="computer" size="massive" color="orange" />
+                <h2>Web Applications</h2>
+              </div>
+            </Link>
+          </Grid.Column>
+          <Grid.Column
+            className="card-box"
+            width={window.innerWidth <= 768 ? 6 : 7}
+          >
+            <Link to="/photography" className="link">
+              <div className="pt20">
+                <Icon name="photo" size="massive" color="purple" />
+                <h2>Photography</h2>
+              </div>
+            </Link>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Grid.Column>
+  );
+
   return (
     <Grid id="home-page">
       <Grid.Row className="home-section">
@@ -31,47 +88,21 @@ const Home = () => {
           </p>
         </div>
       </Grid.Row>
-      <Grid.Row columns={2} className="home-section card-group">
-        <Grid.Column className="card-column" width={6}>
-          <Link to="/profile">
-            <div className="profile">
-              <Image
-                src="/DSC_1981.jpeg"
-                avatar
-                size="medium"
-                className="profile-image"
-              />
-              <h2 className="profile-title">
-                I am happy to show you about my <br />
-                professional journey
-              </h2>
-              <Button className="profile-button">Read More</Button>
-            </div>
-          </Link>
-        </Grid.Column>
-        <Grid.Column className="card-column" width={10}>
-          <Grid>
-            <Grid.Row className="card-box-group">
-              <Grid.Column className="card-box" width={7}>
-                <Link to="/apps" className="link">
-                  <div className="pt20">
-                    <Icon name="computer" size="massive" color="orange" />
-                    <h2>Web Applications</h2>
-                  </div>
-                </Link>
-              </Grid.Column>
-              <Grid.Column className="card-box" width={7}>
-                <Link to="/photography" className="link">
-                  <div className="pt20">
-                    <Icon name="photo" size="massive" color="purple" />
-                    <h2>Photography</h2>
-                  </div>
-                </Link>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Grid.Column>
-      </Grid.Row>
+      {window.innerWidth <= 768 ? (
+        <>
+          <Grid.Row columns={1} className="home-section card-group">
+            {profileCardComp()}
+          </Grid.Row>
+          <Grid.Row columns={1} className="home-section card-group">
+            {otherCardComp()}
+          </Grid.Row>
+        </>
+      ) : (
+        <Grid.Row columns={2} className="home-section card-group">
+          {profileCardComp()}
+          {otherCardComp()}
+        </Grid.Row>
+      )}
     </Grid>
   );
 };
