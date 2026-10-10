@@ -96,9 +96,13 @@ const Apps = () => {
             )}
             <TechTags items={selected.techStack} />
             <div className="actions push-bottom">
-              <a className="btn primary" href={selected.url} target="_blank" rel="noreferrer">
-                LAUNCH APP ↗
-              </a>
+              {selected.url ? (
+                <a className="btn primary" href={selected.url} target="_blank" rel="noreferrer">
+                  LAUNCH APP ↗
+                </a>
+              ) : (
+                <span className="private-note mono">● PRIVATE BUILD · DEMO ON REQUEST</span>
+              )}
               {selected.repoUrl && (
                 <a className="btn ghost" href={selected.repoUrl} target="_blank" rel="noreferrer">
                   VIEW SOURCE

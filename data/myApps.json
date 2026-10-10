@@ -1,5 +1,62 @@
 [
   {
+    "id": "numwit",
+    "name": "Numwit",
+    "tagline": "A real-time multiplayer mind game — don't guess the number, guess everyone else.",
+    "description": "Everyone secretly picks a number from 0 to 100 at the same time. The target is 80% of the average, and the closest pick wins the round while everyone else takes a penalty point. Five penalties and you're out — the last mind standing wins. Jump into a public room, start a private one with friends, or practise against bots. No signup, ever.",
+    "highlights": [
+      "Real-time rounds for 3–8 players over WebSockets",
+      "Public rooms, private rooms with friends, or play vs bots",
+      "No account needed — pick a name and play",
+      "Global leaderboard"
+    ],
+    "category": [
+      "Games",
+      "Multiplayer"
+    ],
+    "techStack": [
+      "React",
+      "Node.js",
+      "Socket.IO"
+    ],
+    "status": "live",
+    "featured": true,
+    "year": 2026,
+    "order": 1,
+    "url": "https://numwit.prajvex.com/",
+    "repoUrl": "",
+    "imageUrl": "/numwit.jpg"
+  },
+  {
+    "id": "ai-gen-studio",
+    "name": "AI Gen Studio",
+    "tagline": "An AI content studio that runs Instagram accounts end to end — from idea to posted reel.",
+    "description": "A team of AI agents plans, writes, designs and publishes Instagram reels and carousels across multiple accounts. A strategist remembers what worked, a writer drafts each post, a compliance agent checks finance content against SEBI rules, and image and voice agents produce the visuals before editing assembles the final reel. Nothing goes out without a human review, and every rupee of AI spend is tracked against a monthly budget.",
+    "highlights": [
+      "Multi-agent pipeline: strategy → writing → compliance → visuals → editing → review → posting",
+      "Runs several Instagram accounts with scheduling and live post status",
+      "Human-in-the-loop review before anything is published",
+      "SEBI compliance checks for finance content",
+      "Monthly AI spend tracking with a hard budget"
+    ],
+    "category": [
+      "AI",
+      "Automation"
+    ],
+    "techStack": [
+      "Claude",
+      "fal.ai",
+      "Instagram Graph API"
+    ],
+    "status": "beta",
+    "featured": true,
+    "year": 2026,
+    "order": 2,
+    "url": "",
+    "repoUrl": "",
+    "imageUrl": "/ai-gen-studio.jpg"
+  },
+  {
     "id": "booknbeats",
     "name": "BooknBeats",
     "tagline": "A music player that scores the book you are reading.",
@@ -9,12 +66,19 @@
       "In-app music player",
       "Deployed on Netlify"
     ],
-    "category": ["AI", "Music"],
-    "techStack": ["React", "OpenAI GPT-3.5", "Netlify"],
+    "category": [
+      "AI",
+      "Music"
+    ],
+    "techStack": [
+      "React",
+      "OpenAI GPT-3.5",
+      "Netlify"
+    ],
     "status": "live",
     "featured": true,
     "year": 2024,
-    "order": 1,
+    "order": 3,
     "url": "https://booknbeats.netlify.app/",
     "repoUrl": "",
     "imageUrl": "/booknbeats.jpg"
@@ -29,12 +93,19 @@
       "Deduction-aware calculation",
       "Built with Angular"
     ],
-    "category": ["Finance", "Tools"],
-    "techStack": ["Angular", "TypeScript", "Netlify"],
+    "category": [
+      "Finance",
+      "Tools"
+    ],
+    "techStack": [
+      "Angular",
+      "TypeScript",
+      "Netlify"
+    ],
     "status": "live",
     "featured": true,
     "year": 2023,
-    "order": 2,
+    "order": 4,
     "url": "https://wolfpack-taxcalc.netlify.app/user",
     "repoUrl": "",
     "imageUrl": "/tax-calc.jpg"
