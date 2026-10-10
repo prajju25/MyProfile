@@ -1,39 +1,45 @@
 import React from "react";
-import { Icon, Menu } from "semantic-ui-react";
+import { Link, NavLink } from "react-router-dom";
+import { menus } from "../Constants/Constants";
+import { SOCIAL_LINKS } from "../Constants/ApiConstant";
+import Icon from "./Icons";
 
-const Header = ({ displaySideMenu, isSidebar }: any) => {
+const Header = () => {
   return (
-    <Menu style={{ marginTop: "10px" }} className="container-bg">
-      <a className="item" onClick={() => displaySideMenu(!isSidebar)}>
-        <Icon disabled name="th" />
-      </a>
-      <Menu.Menu position="right" className="menu-section">
-        <div className="item">Contact me in:</div>
-        <div className="item">
-          <a href="https://twitter.com/prajju2511">
-            <Icon circular inverted name="twitter" color="blue" />
-          </a>
+    <header className="site-header">
+      <nav aria-label="Primary" className="container nav">
+        <Link to="/" className="brand" aria-label="Prajwal Kotian — home">
+          PK<span className="accent">//</span>
+          <span className="brand-version">v3.0</span>
+        </Link>
+        <div className="nav-links">
+          {menus.map((m) => (
+            <NavLink
+              key={m.to}
+              to={m.to}
+              end={m.to === "/"}
+              className={({ isActive }) => `nav-link${isActive ? " on" : ""}`}
+            >
+              {m.code} {m.menuItem.toUpperCase()}
+            </NavLink>
+          ))}
         </div>
-        <div className="item">
-          <a href="https://www.linkedin.com/in/prajwal-kotian-4ba48980/">
-            <Icon circular inverted name="linkedin" color="blue" />
-          </a>
+        <div className="nav-social">
+          {SOCIAL_LINKS.map((s) => (
+            <a
+              key={s.label}
+              className="icon-btn"
+              href={s.href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={s.label}
+            >
+              <Icon name={s.icon} />
+            </a>
+          ))}
         </div>
-        <div className="item">
-          <a href="https://www.instagram.com/prajju25/">
-            <img
-              height={25}
-              src="https://s.yimg.com/fz/api/res/1.2/7wmcqjtgVFiMeMxLOlW3sw--~C/YXBwaWQ9c3JjaGRkO2ZpPWZpdDtoPTI0MDtxPTgwO3c9MjQw/https://s.yimg.com/zb/imgv1/e9d6381f-6a16-39d9-b6f9-1467838c022c/t_500x300"
-            />
-          </a>
-        </div>
-        <div className="item">
-          <a href="https://www.facebook.com/prajwal.kotian">
-            <Icon circular inverted name="facebook" color="blue" />
-          </a>
-        </div>
-      </Menu.Menu>
-    </Menu>
+      </nav>
+    </header>
   );
 };
 

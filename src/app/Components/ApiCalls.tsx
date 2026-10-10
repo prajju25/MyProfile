@@ -13,5 +13,10 @@ export const HttpGet = (url: string) => {
 };
 
 export const fetchJson = (url: string) => {
-  return fetch(url).then((response) => response.json());
+  return fetch(url).then((response) => {
+    if (!response.ok) {
+      throw new Error(`Request failed: ${response.status}`);
+    }
+    return response.json();
+  });
 };

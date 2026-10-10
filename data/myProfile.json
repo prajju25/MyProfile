@@ -4,106 +4,56 @@
       "name": "PRAJWAL KOTIAN",
       "displayPicture": "/DSC_1981.jpeg",
       "designation": "Senior Lead / Senior Web Developer",
-      "addressLine1": "4-82B, PRANAM, Classic Chaya Building",
-      "addressLine2": "4th Cross Nayampalli, Santhekatte",
-      "city": "Udupi",
-      "state": "Karnataka",
-      "country": "India",
-      "pinCode": "576105",
-      "phoneNumber": "(+91) 8237408816",
+      "location": "Bengaluru · Udupi, IN",
+      "careerStartDate": "2014-09-01",
       "email": "prajju.personal@gmail.com",
-      "linkedInURL": "https://www.linkedin.com/in/prajwal-kotian-4ba48980/",
-      "gitHubURL": "https://github.com/prajju25",
-      "skills": [
-        {
-          "name": "ReactJS",
-          "rating": 4
-        },
-        {
-          "name": "JavaScript",
-          "rating": 5
-        },
-        {
-          "name": "TypeScript",
-          "rating": 3
-        },
-        {
-          "name": "NodeJS",
-          "rating": 2
-        },
-        {
-          "name": "Angular",
-          "rating": 4
-        },
-        {
-          "name": "React Native",
-          "rating": 2
-        },
-        {
-          "name": "Java",
-          "rating": 3
-        },
-        {
-          "name": "Spring Boot",
-          "rating": 3
-        },
-        {
-          "name": "Oracle/mySQL",
-          "rating": 3
-        },
-        {
-          "name": "PLSQL",
-          "rating": 2
-        },
-        {
-          "name": "MongoDB",
-          "rating": 2
-        },
-        {
-          "name": "Express.js",
-          "rating": 2
-        },
-        {
-          "name": "Next.js",
-          "rating": 1
-        },
-        {
-          "name": "web3.js",
-          "rating": 1
-        },
-        {
-          "name": "Solidity",
-          "rating": 1
-        },
-        {
-          "name": "Blockchain",
-          "rating": 2
-        },
-        {
-          "name": "AWS",
-          "rating": 1
-        },
-        {
-          "name": "Jenkins/Devops",
-          "rating": 1
-        }
+      "resumeUrl": "",
+      "social": {
+        "gitHub": "https://github.com/prajju25",
+        "linkedIn": "https://www.linkedin.com/in/prajwal-kotian-4ba48980/",
+        "twitter": "https://twitter.com/prajju2511",
+        "instagram": "https://www.instagram.com/prajju25/"
+      },
+      "stats": [
+        { "value": "300", "suffix": "+", "label": "Tech interviews conducted" },
+        { "value": "9000", "suffix": "+", "label": "Customers on shipped features" }
       ],
-      "description": "Full stack developer having an experience of 9 years in IT industry. Have expertise working in UI libraries and frameworks like React, Redux, Angular (Above 2+, Angular JS) along with it have backend knowledge on Spring Boot and spring. Experience working in different agile process like Scrum Agile, SAFE Agile and also worked in Waterflow model. Expertise in web accessibility of the UI pages with experience in fixing issues related to accessibility (CATO and e508 compliance). Have exposure working in Jenkins, CI-CD pipelines integrated with Jenkins and cloud platforms like AWS for deployment. Looking to leverage my knowledge and experience into a role as Senior UI Lead.",
+      "skills": [
+        { "name": "JavaScript", "rating": 5, "category": "Frontend" },
+        { "name": "ReactJS", "rating": 4, "category": "Frontend" },
+        { "name": "Angular", "rating": 4, "category": "Frontend" },
+        { "name": "TypeScript", "rating": 3, "category": "Frontend" },
+        { "name": "React Native", "rating": 2, "category": "Frontend" },
+        { "name": "Next.js", "rating": 1, "category": "Frontend" },
+        { "name": "Java", "rating": 3, "category": "Backend" },
+        { "name": "Spring Boot", "rating": 3, "category": "Backend" },
+        { "name": "NodeJS", "rating": 2, "category": "Backend" },
+        { "name": "Express.js", "rating": 2, "category": "Backend" },
+        { "name": "Oracle / MySQL", "rating": 3, "category": "Data" },
+        { "name": "PL/SQL", "rating": 2, "category": "Data" },
+        { "name": "MongoDB", "rating": 2, "category": "Data" },
+        { "name": "Blockchain", "rating": 2, "category": "Cloud & Web3" },
+        { "name": "AWS", "rating": 1, "category": "Cloud & Web3" },
+        { "name": "Jenkins / DevOps", "rating": 1, "category": "Cloud & Web3" },
+        { "name": "web3.js", "rating": 1, "category": "Cloud & Web3" },
+        { "name": "Solidity", "rating": 1, "category": "Cloud & Web3" }
+      ],
+      "description": "Full-stack developer with {years}+ years in the IT industry. Deep in UI libraries and frameworks like React, Redux and Angular (2+ and AngularJS), with backend knowledge of Spring Boot and Spring. Has worked across Scrum, SAFe Agile and Waterfall. Specialises in web accessibility, fixing CATO and Section 508 compliance issues. Hands-on with Jenkins CI/CD pipelines and AWS deployments. Looking to leverage this experience in a Senior UI Lead role.",
       "workHistory": [
         {
           "startDate": "April 2021",
           "endDate": "Present",
           "role": "Technical Specialist - Senior Lead",
-          "companyName": "BRILLIO",
+          "companyName": "Brillio",
           "location": "Bengaluru, INDIA",
           "description": [
             "As offshore Lead, conducted offshore DSU calls and guided the team on achieving targeted deliverables for sprint.",
-            "Performed role of UI SMEs in project by Building new react web application from scratch. Created reusable components like Search Table with advanced filters.",
-            "Created new spring boot service and created Rest APIs for displaying data in UI. Working as Full Stack Developer helped the team contributing in both front-end and back-end.",
-            "Handled performance related issues in application and also improved the data source queries.",
-            "Technologies Used: React JS, Redux, Spring Boot, Eureka, Oracle and PLSQL",
+            "Performed role of UI SME in project by building a new React web application from scratch. Created reusable components like a Search Table with advanced filters.",
+            "Created new Spring Boot services and REST APIs for displaying data in UI. Working as Full Stack Developer, contributed to both front-end and back-end.",
+            "Handled performance related issues in the application and improved the data source queries.",
             "Conducted 300+ interviews for Brillio internal and client recruitment."
-          ]
+          ],
+          "tech": ["React", "Redux", "Spring Boot", "Eureka", "Oracle", "PL/SQL"]
         },
         {
           "startDate": "September 2014",
@@ -112,14 +62,14 @@
           "companyName": "Accenture Solutions Private Ltd",
           "location": "Bengaluru, INDIA",
           "description": [
-            "Worked as Technical POC and one of UI SME in SLA Reporting project and working with a team of 9-10 people. As a lead was involved in story grooming and providing estimations and assigning story to team members.",
-            "Successfully migrated web application to Angular 8 from AngularJS for multiple application modules. Received appreciation from clients to the team for increasing the performance of the page in production by 30%. Developed major functionality in most releases which are right now live and available to 9000+ customers.",
-            "Involved in requirements and design calls with all AT&T stakeholders including Business and Architects. Came up with overall design and created design documents and interface specification documents. Web Service Integrations for all new products across Map and Maintenance modules.",
-            "Developed single sign on into b2b application for clients who use SLA reports. Migrated spring boot application caching mechanism from Hazel-cast to Redis. Implemented Apache Kafka for publishing recommendations to third party systems.",
-            "Fixed major CATO issues that were reported by the organization. Resolved 508 violations reported on application. Showed responsibility on supporting modules until production release.",
-            "Knowledge transfer of application functional/technical flows to new team members. Mentor junior team members and up-skill newcomers. Gave KT on CATO (Corporate Accessibility Technology Office) which ensures clients products and services are accessible to all their customers.",
-            "Technologies Used: Angular, Spring Boot, Spring MVC, NodeJS, REDIS, Apache Kafka, AngularJS and MongoDB."
-          ]
+            "Worked as Technical POC and one of the UI SMEs in the SLA Reporting project with a team of 9-10 people. As a lead, was involved in story grooming, providing estimations and assigning stories to team members.",
+            "Successfully migrated the web application to Angular 8 from AngularJS for multiple application modules. Received client appreciation for increasing production page performance by 30%. Developed major functionality in most releases, live for 9000+ customers.",
+            "Involved in requirements and design calls with all AT&T stakeholders including Business and Architects. Came up with the overall design and created design and interface specification documents. Web Service integrations for all new products across Map and Maintenance modules.",
+            "Developed single sign-on into the B2B application for clients who use SLA reports. Migrated Spring Boot caching from Hazelcast to Redis. Implemented Apache Kafka for publishing recommendations to third party systems.",
+            "Fixed major CATO issues reported by the organization and resolved 508 violations. Supported modules through to production release.",
+            "Knowledge transfer of functional/technical flows to new team members. Mentored junior team members and up-skilled newcomers. Gave KT on CATO (Corporate Accessibility Technology Office), which ensures client products and services are accessible to all customers."
+          ],
+          "tech": ["Angular", "AngularJS", "Spring Boot", "Spring MVC", "NodeJS", "Redis", "Apache Kafka", "MongoDB"]
         }
       ],
       "education": [
@@ -149,34 +99,17 @@
         }
       ],
       "accomplishments": [
-        "Received \"Brillian of the Quarter\" on December 2021 for the excellence.",
-        "Received \"Brillio Special Awards\" in January 2022 for the support provided on projects.",
-        "Received award on Tech Star from Accenture in 2018 for my enhancement of skills on UI technologies."
+        { "title": "Brillio Special Award", "date": "Jan 2022", "detail": "For the support provided on projects." },
+        { "title": "Brillian of the Quarter", "date": "Dec 2021", "detail": "For excellence." },
+        { "title": "Tech Star — Accenture", "date": "2018", "detail": "For enhancement of skills on UI technologies." }
       ],
       "certifications": [
-        {
-          "completedDate": "Aug 2018",
-          "certificateName": "SAFe Agilist Certification Certification"
-        },
-        {
-          "completedDate": "Nov 2022",
-          "certificateName": "Ethereum and Solidity"
-        },
-        {
-          "completedDate": "Dec 2023",
-          "certificateName": "Cutshort Certified Javascript - Advanced"
-        },
-        {
-          "completedDate": "Dec 2023",
-          "certificateName": "Cutshort Certified React.js - Advanced"
-        }
+        { "completedDate": "Dec 2023", "certificateName": "Cutshort Certified React.js - Advanced" },
+        { "completedDate": "Dec 2023", "certificateName": "Cutshort Certified Javascript - Advanced" },
+        { "completedDate": "Nov 2022", "certificateName": "Ethereum and Solidity" },
+        { "completedDate": "Aug 2018", "certificateName": "SAFe Agilist Certification" }
       ],
-      "interests": [
-        "Bike Riding",
-        "Video Editing",
-        "Stock Market/Option Trading",
-        "Cooking"
-      ]
+      "interests": ["Bike Riding", "Video Editing", "Stock Market/Option Trading", "Cooking", "Photography"]
     }
   ]
 }

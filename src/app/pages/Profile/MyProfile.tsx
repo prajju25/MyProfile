@@ -1,194 +1,245 @@
-import React, { useEffect, useState } from "react";
-import {
-  Dimmer,
-  Grid,
-  Image,
-  Loader,
-  Message,
-  Rating,
-} from "semantic-ui-react";
-import { fetchJson } from "../../Components/ApiCalls";
-import * as ApiConstants from "../../Constants/ApiConstant";
-import { ProfileObject } from "../../Interface/ProfileObject";
+import React from "react";
+import { ProfileObject, SkillObject } from "../../Interface/ProfileObject";
+import { useContent } from "../../hooks/useContent";
+import { fillYears, yearsSince } from "../../utils/profile";
+import Icon from "../../Components/Icons";
+import Reveal from "../../Components/Reveal";
+import { ErrorState, Loading } from "../../Components/StatusPanel";
+
+const GROUP_COLORS = ["#39E6FF", "#A77BFF", "#4BFFB0", "#FFB547"];
+
+const groupSkills = (skills: Array<SkillObject>) => {
+  const groups = new Map<string, Array<SkillObject>>();
+  skills.forEach((s) => {
+    const key = s.category || "Other";
+    groups.set(key, [...(groups.get(key) ?? []), s]);
+  });
+  return Array.from(groups.entries()).map(([name, list], i) => ({
+    name,
+    color: GROUP_COLORS[i % GROUP_COLORS.length],
+    skills: [...list].sort((a, b) => b.rating - a.rating),
+  }));
+};
+
+const SkillBar = ({ skill, color }: { skill: SkillObject; color: string }) => (
+  <div className="skill">
+    <div className="skill-row">
+      <span>{skill.name}</span>
+      <span className="mono muted small">{skill.rating}/5</span>
+    </div>
+    <div className="segs" role="img" aria-label={`${skill.name}: ${skill.rating} out of 5`}>
+      {[1, 2, 3, 4, 5].map((i) => (
+        <span
+          key={i}
+          className={`seg${i <= skill.rating ? " lit" : ""}`}
+          style={
+            {
+              "--seg-color": color,
+              animationDelay: `${i * 80}ms`,
+            } as React.CSSProperties
+          }
+        />
+      ))}
+    </div>
+  </div>
+);
 
 const MyProfile = () => {
-  const [state, setState] = useState<ProfileObject>();
-  const [settings, setSettings] = useState({
-    loader: true,
-    error: false,
-  });
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    //HttpGet(ApiConstants.PROFILE_API)
-    fetchJson(ApiConstants.PROFILE_JSON)
-      .then((res: any) => {
-        setState(res.data[0]);
-        setSettings({ ...settings, loader: false, error: false });
-      })
-      .catch((err: any) => {
-        setSettings({ ...settings, loader: false, error: true });
-      });
-  }, []);
+  const { data, loading, error } = useContent<{ data: Array<ProfileObject> }>("profile");
+  const profile = data?.data[0];
 
-  const profileDisplay = () =>
-    settings.error ? (
-      <Grid.Column>
-        <Message
-          error
-          header="Failed to fetch Profile Data!! Please try after some time."
-        />
-      </Grid.Column>
-    ) : (
-      <>
-        <Grid.Column width={5} className="bg-blue">
-          <div className="mb20">
-            <Image src={state?.displayPicture} />
-            <h1>
-              <strong>{state?.name}</strong>
-            </h1>
-            <span className="fs25">{state?.designation}</span>
-          </div>
-          <div className="mb20">
-            <h3>
-              <strong>Contact</strong>
-            </h3>
-            <div>
-              <div className="label-text">Address</div>
-              <div>{state?.addressLine1}</div>
-              <div>{state?.addressLine2}</div>
-              <div>
-                {state?.city}, {state?.state}, {state?.country} -{" "}
-                {state?.pinCode}
-              </div>
-            </div>
-            <div className="mt10">
-              <div className="label-text">Phone</div>
-              <div>{state?.phoneNumber}</div>
-            </div>
-            <div className="mt10">
-              <div className="label-text">E-mail</div>
-              <div>{state?.email}</div>
-            </div>
-            <div className="mt10">
-              <div className="label-text">LinkedIn</div>
-              <div>
-                <a href={state?.linkedInURL}>{state?.linkedInURL}</a>
-              </div>
-            </div>
-            <div className="mt10">
-              <div className="label-text">GitHub</div>
-              <div>
-                <a href={state?.gitHubURL}>{state?.gitHubURL}</a>
-              </div>
-            </div>
-          </div>
-          <div>
-            <h3>Skills</h3>
-            {state?.skills.map((skill) => {
-              return (
-                <div className="skill-rating" key={`skill_${skill.name}`}>
-                  <label>{skill.name}</label>
-                  <div>
-                    <Rating
-                      maxRating={5}
-                      defaultRating={skill.rating}
-                      icon="star"
-                      size="tiny"
-                    />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </Grid.Column>
-        <Grid.Column width={11} className="resume-font bg-aliceblue">
-          <div className="mb20">{state?.description}</div>
-          <div className="mb20">
-            <h3>Work History</h3>
-            {state?.workHistory.map((work) => {
-              return (
-                <Grid key={work.companyName}>
-                  <Grid.Column width={3}>
-                    {work.startDate} / {work.endDate}
-                  </Grid.Column>
-                  <Grid.Column width={13}>
-                    <h4>{work.role}</h4>
-                    <div>
-                      {work.companyName}, {work.location}
-                    </div>
-                    <ul>
-                      {work.description.map((line) => {
-                        return <li key={line}>{line}</li>;
-                      })}
-                    </ul>
-                  </Grid.Column>
-                </Grid>
-              );
-            })}
-          </div>
-          <div className="mb20">
-            <h3>Education</h3>
-            {state?.education.map((e) => {
-              return (
-                <Grid key={e.schoolName}>
-                  <Grid.Column width={3}>
-                    {e.startDate} / {e.endDate}
-                  </Grid.Column>
-                  <Grid.Column width={13}>
-                    <h4>{e.courseName}</h4>
-                    <div>{e.schoolName}</div>
-                    <div>
-                      {e.isPercentage ? "Percentage" : "CGPA"}: {e.marks}
-                      {e.isPercentage && "%"}
-                    </div>
-                  </Grid.Column>
-                </Grid>
-              );
-            })}
-          </div>
-          <div className="mb20">
-            <h3>Accomplishments</h3>
-            <ul>
-              {state?.accomplishments.map((a) => {
-                return <li key={a}>{a}</li>;
-              })}
-            </ul>
-          </div>
-          <div className="mb20">
-            <h3>Certifications</h3>
-            {state?.certifications.map((c) => {
-              return (
-                <Grid key={c.certificateName}>
-                  <Grid.Column width={3}>{c.completedDate}</Grid.Column>
-                  <Grid.Column width={13}>{c.certificateName}</Grid.Column>
-                </Grid>
-              );
-            })}
-          </div>
-          <div>
-            <h3>Interests</h3>
-            <ul>
-              {state?.interests.map((i) => {
-                return <li key={i}>{i}</li>;
-              })}
-            </ul>
-          </div>
-        </Grid.Column>
-      </>
-    );
+  if (loading) return <Loading label="Loading profile" />;
+  if (error || !profile)
+    return <ErrorState message="Failed to fetch Profile data. Please try again after some time." />;
+
+  const years = yearsSince(profile.careerStartDate);
+  const [firstName, ...rest] = profile.name.split(" ");
+  const social = profile.social ?? {};
 
   return (
-    <Grid celled>
-      <Grid.Row className="main-page">
-        {settings.loader ? (
-          <Dimmer active inverted>
-            <Loader inverted content="Loading" />
-          </Dimmer>
-        ) : (
-          profileDisplay()
-        )}
-      </Grid.Row>
-    </Grid>
+    <div className="container page profile-page">
+      <section className="panel id-card rise" aria-label="Identity">
+        <div className="id-photo">
+          <img src={profile.displayPicture} alt={`Portrait of ${profile.name}`} />
+          <span className="bracket tl" />
+          <span className="bracket br" />
+          <span className="verified mono">● ID VERIFIED</span>
+        </div>
+        <div className="id-body">
+          <span className="eyebrow mono">// OPERATOR PROFILE</span>
+          <h1 className="id-name">
+            {firstName}
+            <br />
+            <span className="accent">{rest.join(" ")}</span>
+          </h1>
+          <span className="id-role">{profile.designation.replace(" / ", " · ")}</span>
+          <p className="muted">{fillYears(profile.description, years)}</p>
+          <div className="pills">
+            <a className="pill mono" href={`mailto:${profile.email}`}>
+              <Icon name="mail" size={16} /> {profile.email}
+            </a>
+            {social.linkedIn && (
+              <a className="pill mono" href={social.linkedIn} target="_blank" rel="noreferrer">
+                <Icon name="linkedin" size={16} /> LinkedIn
+              </a>
+            )}
+            {social.gitHub && (
+              <a className="pill mono" href={social.gitHub} target="_blank" rel="noreferrer">
+                <Icon name="github" size={16} /> GitHub
+              </a>
+            )}
+            {profile.location && (
+              <span className="pill mono">
+                <Icon name="pin" size={16} /> {profile.location}
+              </span>
+            )}
+          </div>
+          {profile.resumeUrl && (
+            <div>
+              <a className="btn primary" href={profile.resumeUrl} download>
+                DOWNLOAD RÉSUMÉ ↓
+              </a>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section className="block" aria-labelledby="skills">
+        <div className="section-head">
+          <div className="stack-sm">
+            <span className="eyebrow mono">// CAPABILITY MATRIX</span>
+            <h2 id="skills" className="h2">
+              Skills
+            </h2>
+          </div>
+          <span className="mono muted small">POWER LEVEL 1–5</span>
+        </div>
+        <div className="skill-grid">
+          {groupSkills(profile.skills).map((g, i) => (
+            <Reveal key={g.name} className="panel skill-group" delay={i * 80}>
+              <span className="group-title" style={{ color: g.color }}>
+                {g.name}
+              </span>
+              {g.skills.map((s) => (
+                <SkillBar key={s.name} skill={s} color={g.color} />
+              ))}
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="block" aria-labelledby="timeline">
+        <div className="stack-sm">
+          <span className="eyebrow mono">// MISSION LOG</span>
+          <h2 id="timeline" className="h2">
+            Work history
+          </h2>
+        </div>
+        <div className="timeline">
+          {profile.workHistory.map((w, i) => (
+            <Reveal as="article" key={w.companyName + w.startDate} className="panel role">
+              <span className={`t-node${i === 0 && w.endDate === "Present" ? " live" : ""}`} />
+              <div className="role-head">
+                <div className="stack-sm">
+                  <h3 className="role-title">{w.role}</h3>
+                  <span>
+                    {w.companyName} · {w.location}
+                  </span>
+                </div>
+                <span className="range mono">
+                  {w.startDate.toUpperCase()} → {w.endDate.toUpperCase()}
+                </span>
+              </div>
+              <ul className="role-points">
+                {w.description.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+              {w.tech && w.tech.length > 0 && (
+                <div className="tags">
+                  {w.tech.map((t) => (
+                    <span className="tag mono violet" key={t}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="block" aria-labelledby="edu">
+        <div className="stack-sm">
+          <span className="eyebrow mono">// TRAINING DATA</span>
+          <h2 id="edu" className="h2">
+            Education
+          </h2>
+        </div>
+        <div className="edu-grid">
+          {profile.education.map((e, i) => (
+            <Reveal key={e.schoolName} className="panel edu" delay={i * 80}>
+              <span className="mono muted small">
+                {e.startDate} — {e.endDate}
+              </span>
+              <span className="edu-course">{e.courseName}</span>
+              <span className="muted">{e.schoolName}</span>
+              <span className="edu-score mono">
+                {e.isPercentage ? `${e.marks}%` : `CGPA ${e.marks}`}
+              </span>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="split">
+        <div className="split-main">
+          <div className="stack-sm">
+            <span className="eyebrow mono">// UNLOCKED</span>
+            <h2 className="h2">Awards &amp; certifications</h2>
+          </div>
+          <div className="badges">
+            {profile.certifications.map((c) => (
+              <div className="badge" key={c.certificateName}>
+                <span className="hex">
+                  <Icon name="star" size={22} strokeWidth={2} />
+                </span>
+                <span className="stack-xs">
+                  <span className="badge-title">{c.certificateName}</span>
+                  <span className="mono muted small">
+                    CERTIFICATION · {c.completedDate.toUpperCase()}
+                  </span>
+                </span>
+              </div>
+            ))}
+            {profile.accomplishments.map((a) => (
+              <div className="badge" key={a.title}>
+                <span className="hex violet">
+                  <Icon name="star" size={22} strokeWidth={2} />
+                </span>
+                <span className="stack-xs">
+                  <span className="badge-title">{a.title}</span>
+                  <span className="mono muted small">AWARD · {a.date.toUpperCase()}</span>
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="split-side">
+          <div className="stack-sm">
+            <span className="eyebrow mono">// OFF-DUTY</span>
+            <h2 className="h2">Interests</h2>
+          </div>
+          <div className="pills">
+            {profile.interests.map((i) => (
+              <span className="pill" key={i}>
+                {i}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 

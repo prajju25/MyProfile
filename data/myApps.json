@@ -1,14 +1,42 @@
 [
   {
-    "name": "Tax Calculator",
-    "description": "This app lets you calculate tax for you taxable income on old and new regime. This App is built using Angular framework",
-    "url": "https://wolfpack-taxcalc.netlify.app/user",
-    "imageUrl": "/tax-calc.jpg"
+    "id": "booknbeats",
+    "name": "BooknBeats",
+    "tagline": "A music player that scores the book you are reading.",
+    "description": "Tell it what you are reading and it recommends songs that match the book's theme and mood, powered by GPT-3.5.",
+    "highlights": [
+      "Theme-to-playlist recommendations via OpenAI",
+      "In-app music player",
+      "Deployed on Netlify"
+    ],
+    "category": ["AI", "Music"],
+    "techStack": ["React", "OpenAI GPT-3.5", "Netlify"],
+    "status": "live",
+    "featured": true,
+    "year": 2024,
+    "order": 1,
+    "url": "https://booknbeats.netlify.app/",
+    "repoUrl": "",
+    "imageUrl": "/booknbeats.jpg"
   },
   {
-    "name": "BooknBeats",
-    "description": "Music player which recommends songs based on the theme ofbook your reading. This App is built using React library and chatgpt-3.5",
-    "url": "https://booknbeats.netlify.app/",
-    "imageUrl": "/booknbeats.jpg"
+    "id": "tax-calculator",
+    "name": "Tax Calculator",
+    "tagline": "Compare your income tax under the old and new Indian regimes.",
+    "description": "Enter your taxable income and deductions and see the liability under both regimes side by side, so you can pick the cheaper one.",
+    "highlights": [
+      "Old vs new regime comparison",
+      "Deduction-aware calculation",
+      "Built with Angular"
+    ],
+    "category": ["Finance", "Tools"],
+    "techStack": ["Angular", "TypeScript", "Netlify"],
+    "status": "live",
+    "featured": true,
+    "year": 2023,
+    "order": 2,
+    "url": "https://wolfpack-taxcalc.netlify.app/user",
+    "repoUrl": "",
+    "imageUrl": "/tax-calc.jpg"
   }
 ]
