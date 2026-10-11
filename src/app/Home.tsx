@@ -7,101 +7,98 @@ import { AppsObject } from "./Interface/AppsObject";
 import { sortApps, yearsSince } from "./utils/profile";
 import Icon from "./Components/Icons";
 import Reveal from "./Components/Reveal";
-import { AppImage, StatusTag, TechTags } from "./Components/AppMedia";
+import HeroRing, { RingTile } from "./Components/scenes/HeroRing";
+import StorySplit, { StoryStep } from "./Components/scenes/StorySplit";
+import StatsCascade, { CascadeStat } from "./Components/scenes/StatsCascade";
+import WordSpread from "./Components/scenes/WordSpread";
+import HorizontalApps from "./Components/scenes/HorizontalApps";
 
+const PORTRAIT = "/DSC_1981.jpeg";
 const FALLBACK_SKILLS = ["ReactJS", "JavaScript", "TypeScript", "Angular", "Spring Boot", "NodeJS"];
+
+const buildRing = (apps: Array<AppsObject>, years: number): Array<RingTile> => {
+  const covers = apps.filter((a) => a.imageUrl).map((a) => ({ src: a.imageUrl!, label: a.name }));
+  const texts: Array<RingTile> = [
+    { kind: "text", title: `${years}+`, label: "YEARS SHIPPING", tone: "cyan" },
+    { kind: "text", title: "React · Angular", label: "FRONTEND CORE", tone: "violet" },
+    { kind: "text", title: "300+", label: "INTERVIEWS", tone: "green" },
+    { kind: "text", title: "Spring Boot", label: "BACKEND", tone: "amber" },
+  ];
+  const images: Array<RingTile> = [
+    ...covers.map((c) => ({ kind: "image" as const, src: c.src, label: c.label.toUpperCase() })),
+    { kind: "image", src: PORTRAIT, label: "OPERATOR" },
+  ];
+  // Alternate images and text tiles so the ring reads as a mix.
+  const out: Array<RingTile> = [];
+  for (let i = 0; i < Math.max(images.length, texts.length); i++) {
+    if (images[i]) out.push(images[i]);
+    if (texts[i]) out.push(texts[i]);
+  }
+  return out;
+};
+
+const buildStory = (years: number, startYear: number): Array<StoryStep> => [
+  {
+    kicker: `// ${startYear} · BOOT SEQUENCE`,
+    title: `Started in ${startYear}`,
+    body: "Joined Accenture in Bengaluru and shipped features used by 9,000+ customers — including an AngularJS → Angular 8 migration that made production pages 30% faster.",
+    tone: "rgba(57, 230, 255, 0.16)",
+  },
+  {
+    kicker: "// LEVEL UP",
+    title: "Then I started leading",
+    body: "Technical POC, UI SME, mentor. At Brillio I lead offshore teams, build React and Spring Boot platforms from scratch, and have interviewed 300+ engineers.",
+    tone: "rgba(167, 123, 255, 0.18)",
+  },
+  {
+    kicker: "// CORE BELIEF",
+    title: "Complex tech should feel like magic",
+    body: "Accessibility, performance and craft aren't extras — they're the product. Every screen should feel effortless to the person using it.",
+    tone: "rgba(75, 255, 176, 0.13)",
+  },
+  {
+    kicker: "// STILL BUILDING",
+    title: `${years}+ years in, still shipping`,
+    body: "Real-time multiplayer games, AI content studios, everyday tools — the App Lab never closes.",
+    tone: "rgba(255, 181, 71, 0.15)",
+  },
+];
+
+const toNumber = (v: string) => Number(String(v).replace(/[^0-9.]/g, "")) || 0;
 
 const Home = () => {
   const profileRes = useContent<{ data: Array<ProfileObject> }>("profile");
   const appsRes = useContent<Array<AppsObject>>("apps");
   const profile = profileRes.data?.data[0];
   const apps = sortApps(appsRes.data ?? []);
-  const featured = apps.filter((a) => a.featured).slice(0, 3);
 
-  const years = profile ? yearsSince(profile.careerStartDate) : null;
-  const stats = [
-    ...(years ? [{ value: String(years), suffix: "+", label: "Years in the industry" }] : []),
-    ...(profile?.stats ?? []),
-    ...(apps.length
-      ? [{ value: String(apps.length).padStart(2, "0"), suffix: "", label: "Apps in the lab" }]
-      : []),
+  const startDate = profile?.careerStartDate ?? "2014-09-01";
+  const years = yearsSince(startDate);
+  const startYear = new Date(startDate).getFullYear() || 2014;
+
+  const stats: Array<CascadeStat> = [
+    { value: years, suffix: "+", label: "Years in the industry" },
+    ...(profile?.stats ?? []).map((s) => ({ value: toNumber(s.value), suffix: s.suffix ?? "", label: s.label })),
+    ...(apps.length ? [{ value: apps.length, suffix: "", label: "Apps in the lab" }] : []),
   ];
+
+  const covers = apps.filter((a) => a.imageUrl).map((a) => a.imageUrl!);
   const skills = profile?.skills.map((s) => s.name) ?? FALLBACK_SKILLS;
   const ticker = [...skills, ...skills];
 
   return (
-    <>
-      <section className="container hero">
-        <div className="hero-copy rise">
-          <span className="eyebrow mono">
-            <span className="live-dot" />
-            // SYS.ID — A BIT ABOUT ME
-          </span>
-          <h1 className="hero-title">
-            Who
-            <br />
-            am <span className="glow">I?</span>
-            <span className="caret" aria-hidden="true" />
-          </h1>
-          <p className="lead">
-            Hello! I'm <strong>Prajwal Kotian</strong> — Senior Frontend / Fullstack Lead by
-            profession, digital explorer by choice. When I'm not orchestrating the perfect blend
-            of JavaScript and caffeine, I'm busy transforming complex tech into user-friendly
-            magic.
-          </p>
-          <p className="muted">
-            Career milestones, lessons learned, and maybe a few coding bloopers (hey, nobody's
-            perfect!). Dive in and see where the pixels and persistence have taken me so far.
-          </p>
-          <div className="actions">
-            <Link className="btn primary" to="/profile">
-              EXPLORE MY CAREER <span aria-hidden="true">→</span>
-            </Link>
-            <Link className="btn ghost" to="/apps">
-              LAUNCH APP LAB
-            </Link>
-          </div>
-        </div>
+    <div className="home">
+      <HeroRing tiles={buildRing(apps, years)} />
 
-        <div className="hero-visual">
-          <div className="orbit">
-            <span className="ring r3" />
-            <span className="ring r2">
-              <span className="node violet" />
-            </span>
-            <span className="ring r1">
-              <span className="node" />
-            </span>
-            <div className="portrait">
-              <img src="/DSC_1981.jpeg" alt="Portrait of Prajwal Kotian" />
-            </div>
-            <span className="chip mono c1">
-              <span className="live-dot" />
-              STATUS · BUILDING
-            </span>
-            <span className="chip mono c2">LOC · BENGALURU, IN</span>
-            <span className="chip mono c3">STACK · REACT / ANGULAR / SPRING</span>
-          </div>
-        </div>
-      </section>
+      <StorySplit steps={buildStory(years, startYear)} portrait={profile?.displayPicture ?? PORTRAIT} />
 
-      {stats.length > 0 && (
-        <Reveal as="section" className="container section" aria-label="Quick stats">
-          <div className="stats">
-            {stats.map((s) => (
-              <div className="stat" key={s.label}>
-                <span className="stat-value">
-                  {s.value}
-                  <span className="accent">{s.suffix}</span>
-                </span>
-                <span className="stat-label mono">{s.label.toUpperCase()}</span>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-      )}
+      <StatsCascade stats={stats} images={[...covers, PORTRAIT]} />
 
-      <section className="container section" aria-labelledby="portals">
+      <WordSpread lines={["Things I've built", "with code, caffeine", "& curiosity."]} accentFrom={4} />
+
+      {apps.length > 0 && <HorizontalApps apps={apps} />}
+
+      <section className="container section portals-section" aria-labelledby="portals">
         <div className="section-head">
           <h2 id="portals" className="h2">
             Choose a portal
@@ -117,8 +114,7 @@ const Home = () => {
               <Icon name="idcard" size={48} strokeWidth={1.4} className="accent" />
               <span className="portal-title">Career Log</span>
               <span className="muted">
-                {years ? `${years} years` : "A decade+"}, two companies, one timeline. Roles,
-                wins, skills and certifications.
+                {years} years, two companies, one timeline. Roles, wins, skills and certifications.
               </span>
               <span className="mono portal-cta">ENTER →</span>
             </Link>
@@ -130,9 +126,7 @@ const Home = () => {
               <span className="mono portal-code">PORTAL 02</span>
               <Icon name="flask" size={48} strokeWidth={1.4} className="violet-text" />
               <span className="portal-title">App Lab</span>
-              <span className="muted">
-                Side projects and experiments I've designed, built and shipped.
-              </span>
+              <span className="muted">Side projects and experiments I've designed, built and shipped.</span>
               <span className="mono portal-cta">ENTER →</span>
             </Link>
           </Reveal>
@@ -145,46 +139,12 @@ const Home = () => {
               </span>
               <Icon name="camera" size={48} strokeWidth={1.4} className="accent" />
               <span className="portal-title">Photography</span>
-              <span className="muted">
-                Frames from the road. The gallery is being developed — check back soon.
-              </span>
+              <span className="muted">Frames from the road. The gallery is being developed — check back soon.</span>
               <span className="mono portal-cta">PEEK →</span>
             </Link>
           </Reveal>
         </div>
       </section>
-
-      {featured.length > 0 && (
-        <section className="container section" aria-labelledby="featured">
-          <div className="section-head">
-            <h2 id="featured" className="h2">
-              Featured builds
-            </h2>
-            <Link to="/apps" className="mono small text-link">
-              VIEW ALL IN APP LAB →
-            </Link>
-          </div>
-          <div className="card-grid">
-            {featured.map((app, i) => (
-              <Reveal key={app.id} delay={i * 100}>
-                <Link className="app-card" to={`/apps?app=${app.id}`}>
-                  <span className="app-card-media">
-                    <AppImage app={app} />
-                  </span>
-                  <span className="app-card-body">
-                    <span className="app-card-head">
-                      <span className="app-card-title">{app.name}</span>
-                      <StatusTag status={app.status} />
-                    </span>
-                    <span className="muted">{app.tagline}</span>
-                    <TechTags items={app.techStack} />
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </section>
-      )}
 
       <section className="ticker" aria-label="Skills">
         <div className="marquee">
@@ -209,7 +169,7 @@ const Home = () => {
           SEND A TRANSMISSION <span aria-hidden="true">↗</span>
         </a>
       </section>
-    </>
+    </div>
   );
 };
 export default Home;

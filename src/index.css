@@ -139,7 +139,7 @@ p {
 .deck {
   position: relative;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 .grid-bg {
   position: fixed;
@@ -498,28 +498,6 @@ a.pill:hover {
 /* ==========================================================================
    Home
    ========================================================================== */
-.hero {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 72px;
-  padding-top: 88px;
-  padding-bottom: 72px;
-}
-.hero-copy {
-  flex: 999 1 520px;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-}
-.hero-title {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(56px, 8vw, 112px);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-}
 .glow {
   color: var(--cyan);
   text-shadow: 0 0 40px rgba(57, 230, 255, 0.55);
@@ -532,17 +510,6 @@ a.pill:hover {
   margin-left: 0.06em;
   vertical-align: -0.05em;
   animation: blink 1s steps(1) infinite;
-}
-.hero-visual {
-  flex: 1 1 380px;
-  display: flex;
-  justify-content: center;
-  padding: 100px 0;
-}
-.orbit {
-  position: relative;
-  width: 340px;
-  height: 340px;
 }
 .ring {
   position: absolute;
@@ -595,35 +562,6 @@ a.pill:hover {
   display: block;
   background: var(--panel);
 }
-.chip {
-  position: absolute;
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  padding: 10px 14px;
-  border-radius: 10px;
-  background: rgba(13, 16, 32, 0.86);
-  border: 1px solid rgba(57, 230, 255, 0.35);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  animation: float 6s ease-in-out infinite;
-  white-space: nowrap;
-}
-.chip.c1 {
-  top: -6px;
-  left: -120px;
-}
-.chip.c2 {
-  bottom: 30px;
-  right: -140px;
-  animation-delay: -2s;
-  border-color: rgba(167, 123, 255, 0.5);
-}
-.chip.c3 {
-  bottom: -48px;
-  left: -60px;
-  animation-delay: -4s;
-}
-
 .section {
   padding-bottom: 96px;
 }
@@ -1798,15 +1736,6 @@ input[type="date"].input {
 /* ==========================================================================
    Responsive
    ========================================================================== */
-@media (max-width: 1100px) {
-  .chip.c1 {
-    left: -60px;
-  }
-  .chip.c2 {
-    right: -50px;
-  }
-}
-
 @media (max-width: 768px) {
   .nav-links,
   .nav-social {
@@ -1848,41 +1777,6 @@ input[type="date"].input {
     padding-bottom: 110px;
   }
 
-  .hero {
-    padding-top: 40px;
-    gap: 24px;
-    flex-direction: column-reverse;
-    align-items: stretch;
-  }
-  .hero-visual {
-    padding: 56px 0 24px;
-  }
-  .orbit {
-    width: 200px;
-    height: 200px;
-  }
-  .r3,
-  .chip.c3 {
-    display: none;
-  }
-  .r2 {
-    inset: -40px;
-  }
-  .r1 {
-    inset: -18px;
-  }
-  .chip {
-    font-size: 10px;
-    padding: 7px 10px;
-  }
-  .chip.c1 {
-    top: -40px;
-    left: -60px;
-  }
-  .chip.c2 {
-    bottom: -30px;
-    right: -70px;
-  }
   .lead {
     font-size: 17px;
   }

@@ -1,0 +1,663 @@
+/* ==========================================================================
+   Motion layer: boot loader, page transitions, scroll scenes.
+   Every .scene exposes its scroll progress as --p (0 → 1), set by
+   useScrollScene; the animation itself lives here in CSS.
+   ========================================================================== */
+
+/* ---------- Boot loader ---------- */
+html.booting {
+  overflow: hidden;
+}
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.boot-curtain {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50.5%;
+  background: var(--void);
+  transition: transform 0.85s cubic-bezier(0.7, 0, 0.2, 1);
+}
+.boot-curtain.top {
+  top: 0;
+  box-shadow: 0 1px 0 rgba(57, 230, 255, 0.5), 0 0 40px rgba(57, 230, 255, 0.25);
+}
+.boot-curtain.bottom {
+  bottom: 0;
+}
+.boot.exit .boot-curtain.top {
+  transform: translateY(-101%);
+}
+.boot.exit .boot-curtain.bottom {
+  transform: translateY(101%);
+}
+.boot-core {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  transition: opacity 0.35s, transform 0.6s var(--ease);
+}
+.boot.exit .boot-core {
+  opacity: 0;
+  transform: scale(1.15);
+}
+.boot-brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+}
+.boot-count {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(72px, 14vw, 160px);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 60px rgba(57, 230, 255, 0.35);
+}
+.boot-bar {
+  width: min(320px, 70vw);
+  height: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+.boot-bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--cyan), var(--violet));
+  transform-origin: left;
+}
+.boot-line {
+  font-size: 12px;
+  color: var(--dim);
+}
+
+/* ---------- Page transitions + progress ---------- */
+.page-enter {
+  animation: pageIn 0.6s var(--ease) both;
+}
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.page-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 40;
+  pointer-events: none;
+}
+.page-progress > div {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cyan), var(--violet));
+  box-shadow: 0 0 12px rgba(57, 230, 255, 0.7);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+/* ---------- Scene scaffolding ---------- */
+.scene {
+  position: relative;
+  --p: 0;
+}
+.pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+/* ---------- Hero ring ---------- */
+.scene-hero {
+  height: 260vh;
+  margin-top: -73px; /* slide under the sticky header */
+  --cw: 460px;
+  --R: 1150px;
+}
+.ring-stage {
+  position: absolute;
+  inset: 0;
+  perspective: 1100px;
+  perspective-origin: 50% 38%;
+}
+.ring3d {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform-style: preserve-3d;
+  transform: translateZ(calc(var(--p) * 760px)) rotateY(calc(var(--p) * -42deg))
+    rotateX(calc(var(--p) * 6deg));
+}
+.ring-sway {
+  transform-style: preserve-3d;
+  animation: sway 16s ease-in-out infinite alternate;
+}
+@keyframes sway {
+  from {
+    transform: rotateY(-9deg);
+  }
+  to {
+    transform: rotateY(9deg);
+  }
+}
+.ring-card {
+  position: absolute;
+  width: var(--cw);
+  height: calc(var(--cw) * 0.64);
+  left: calc(var(--cw) / -2);
+  top: calc(var(--cw) * -0.32);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid rgba(120, 180, 255, 0.22);
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.9);
+  transform: rotateY(var(--a)) translateZ(calc(var(--R) * -1));
+  backface-visibility: hidden;
+}
+.ring-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ring-card.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+}
+.ring-card.text.cyan {
+  background: radial-gradient(circle at 30% 20%, rgba(57, 230, 255, 0.35), var(--panel) 70%);
+}
+.ring-card.text.violet {
+  background: radial-gradient(circle at 30% 20%, rgba(167, 123, 255, 0.4), var(--panel) 70%);
+}
+.ring-card.text.green {
+  background: radial-gradient(circle at 30% 20%, rgba(75, 255, 176, 0.3), var(--panel) 70%);
+}
+.ring-card.text.amber {
+  background: radial-gradient(circle at 30% 20%, rgba(255, 181, 71, 0.32), var(--panel) 70%);
+}
+.ring-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: calc(var(--cw) * 0.13);
+  line-height: 1.05;
+}
+.ring-label {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  font-size: 11px;
+  padding: 5px 9px;
+  border-radius: 6px;
+  background: rgba(6, 7, 13, 0.8);
+  color: var(--text-2);
+}
+.hero-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(0deg, var(--void) 8%, rgba(6, 7, 13, 0.7) 32%, transparent 58%),
+    radial-gradient(ellipse 90% 70% at 50% 40%, transparent 50%, rgba(6, 7, 13, 0.85) 100%);
+}
+.hero-copy-layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 9vh;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  text-align: center;
+}
+.hero-copy-layer.one {
+  opacity: clamp(0, calc(1 - var(--p) * 2.6), 1);
+  transform: translateY(calc(var(--p) * -120px)) scale(calc(1 - var(--p) * 0.15));
+}
+.hero-copy-layer.two {
+  opacity: clamp(0, calc((var(--p) - 0.42) * 3.2), 1);
+  transform: translateY(calc((1 - var(--p)) * 80px));
+}
+.scene-hero[data-stage="one"] .hero-copy-layer.two,
+.scene-hero[data-stage="two"] .hero-copy-layer.one {
+  pointer-events: none;
+}
+.hero-big {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(56px, 10vw, 150px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+.hero-answer {
+  max-width: 760px;
+  font-size: clamp(20px, 2.3vw, 30px);
+  line-height: 1.45;
+  color: var(--text-2);
+}
+.hero-answer strong {
+  color: var(--text);
+}
+.actions.center {
+  justify-content: center;
+}
+.scroll-cue {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--dim);
+}
+.cue-line {
+  width: 1px;
+  height: 46px;
+  background: linear-gradient(180deg, var(--cyan), transparent);
+  animation: cue 1.8s ease-in-out infinite;
+  transform-origin: top;
+}
+@keyframes cue {
+  0% {
+    transform: scaleY(0);
+    opacity: 1;
+  }
+  70% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 0;
+  }
+}
+
+/* ---------- Story split ---------- */
+.story-pin {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+.story-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.story-orbit {
+  position: relative;
+  width: min(340px, 30vw);
+  aspect-ratio: 1;
+  transform: scale(calc(0.9 + var(--p) * 0.2)) rotate(calc(var(--p) * -8deg));
+}
+.story-orbit .portrait img {
+  transform: rotate(calc(var(--p) * 8deg));
+}
+.story-index {
+  position: absolute;
+  left: 32px;
+  bottom: 32px;
+  font-size: 13px;
+  color: var(--dim);
+}
+.story-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  padding: 80px 7vw 60px;
+  background: linear-gradient(135deg, var(--tone), rgba(13, 16, 32, 0.6));
+  border-left: 1px solid var(--line);
+  transition: background 0.7s var(--ease);
+}
+.story-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  animation: storyIn 0.75s var(--ease) both;
+}
+@keyframes storyIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+  }
+}
+.story-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(34px, 4.4vw, 68px);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+.story-body {
+  font-size: clamp(17px, 1.4vw, 21px);
+  line-height: 1.6;
+  color: var(--text-2);
+  max-width: 560px;
+}
+.story-dots {
+  display: flex;
+  gap: 8px;
+}
+.story-dots span {
+  width: 18px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(120, 180, 255, 0.2);
+  transition: width 0.4s var(--ease), background 0.4s;
+}
+.story-dots span.done {
+  background: rgba(57, 230, 255, 0.5);
+}
+.story-dots span.on {
+  width: 48px;
+  background: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan);
+}
+.story-static {
+  display: grid;
+  gap: 20px;
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+.story-static-item {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ---------- Stats cascade ---------- */
+.stats-pin {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: center;
+}
+.cascade {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 85%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 85%, transparent);
+}
+.cascade-card {
+  position: absolute;
+  width: clamp(200px, 20vw, 300px);
+  aspect-ratio: 16 / 10;
+  left: calc(4% + var(--i) * 7%);
+  top: calc(-10% + var(--i) * 15%);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(120, 180, 255, 0.22);
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.9);
+  transform: translate(calc(var(--p) * -30%), calc(var(--p) * -95%)) rotate(-6deg);
+}
+.cascade-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.stats-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 0 7vw 0 24px;
+}
+.stats-number {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(64px, 10vw, 168px);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  animation: rise 0.6s var(--ease) both;
+}
+.stats-label {
+  font-size: clamp(20px, 2vw, 28px);
+  color: var(--text-2);
+}
+
+/* ---------- Word spread ---------- */
+.scene-words {
+  height: 230vh;
+}
+.words-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  --q: min(1, calc(var(--p) * 1.45));
+}
+.words {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(40px, 7.4vw, 124px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.06em;
+}
+.words-line {
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+  gap: calc((1 - var(--q)) * 16vw + 0.26em);
+}
+.word {
+  display: inline-block;
+  opacity: calc(0.2 + var(--q) * 0.8);
+  transform: translateY(calc((1 - var(--q)) * var(--w) * var(--k) * 12px));
+}
+.word.accent {
+  background: linear-gradient(90deg, var(--violet), var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- Horizontal apps ---------- */
+.h-pin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+  padding-top: 64px;
+}
+.h-head {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.h-viewport {
+  overflow: hidden;
+}
+.h-track {
+  display: flex;
+  gap: 28px;
+  width: max-content;
+  padding: 8px max(24px, calc((100vw - 1192px) / 2));
+  transform: translateX(calc(var(--p) * var(--shift, 0px) * -1));
+  will-change: transform;
+}
+.h-card {
+  flex: none;
+  width: min(80vw, 560px, calc((100svh - 420px) * 1.6));
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--text);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.h-card:hover {
+  color: var(--text);
+  border-color: rgba(167, 123, 255, 0.7);
+  box-shadow: 0 30px 70px -30px rgba(167, 123, 255, 0.6);
+}
+.h-media {
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #111528;
+}
+.h-card:hover .app-img {
+  transform: scale(1.05);
+}
+.h-body {
+  padding: 22px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.h-index {
+  font-size: 12px;
+  color: var(--dim);
+}
+.h-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+}
+.h-more {
+  width: min(60vw, 360px);
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  border-style: dashed;
+  border-color: rgba(167, 123, 255, 0.5);
+  background: transparent;
+}
+.h-more-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+  padding: 0 24px;
+}
+.h-progress {
+  width: min(1192px, calc(100% - 48px));
+  margin: 0 auto;
+  height: 2px;
+  background: var(--line);
+}
+.h-progress span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--violet), var(--cyan));
+  transform-origin: left;
+  transform: scaleX(var(--p));
+}
+.portals-section {
+  padding-top: 72px;
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 768px) {
+  .scene-hero {
+    --cw: 250px;
+    --R: 620px;
+    margin-top: -69px;
+    height: 230vh;
+  }
+  .ring-stage {
+    perspective: 700px;
+  }
+  .ring3d {
+    top: 36%;
+  }
+  .hero-copy-layer {
+    bottom: calc(96px + 4vh);
+  }
+  .story-pin {
+    grid-template-columns: 1fr;
+    grid-template-rows: 38% 62%;
+  }
+  .story-orbit {
+    width: 150px;
+  }
+  .story-index {
+    left: 20px;
+    bottom: 16px;
+  }
+  .story-panel {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding: 28px 22px 110px;
+    justify-content: flex-start;
+    gap: 24px;
+  }
+  .stats-pin {
+    grid-template-columns: 1fr;
+  }
+  .cascade {
+    position: absolute;
+    inset: 0;
+    opacity: 0.35;
+  }
+  .stats-copy {
+    position: relative;
+    padding: 0 24px 80px;
+    align-items: flex-start;
+  }
+  .h-card {
+    width: 82vw;
+  }
+  .h-pin {
+    gap: 22px;
+    padding-bottom: 80px;
+  }
+}
+
+/* ---------- Reduced motion: unpin everything, show final states ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .scene {
+    height: auto !important;
+    margin-top: 0 !important;
+  }
+  .pin {
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+  }
+  .h-viewport {
+    overflow-x: auto;
+  }
+  .h-track {
+    transform: none !important;
+  }
+  .page-progress {
+    display: none;
+  }
+}
